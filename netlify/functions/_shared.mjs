@@ -29,6 +29,9 @@ export const DEFAULT_DATA = {
   holidays: [],
   documents: [],
   history: [],
+  branches: [],
+  classes: [],
+  subjects: [],
   students: [],
   classGroups: {
     "ষষ্ঠ": [], "সপ্তম": [], "অষ্টম": [], "নবম": [], "দশম": []

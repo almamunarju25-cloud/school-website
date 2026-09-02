@@ -1,34 +1,40 @@
 import { getData, json } from "./_shared.mjs";
 
 const active=x=>x?.is_active===undefined || x?.is_active===true || x?.is_active===1 || x?.is_active==="1";
+const mediaUrl=v=>v&&typeof v==="object"?(v.url||""):(v||"");
+const normalizeImage=x=>x?{...x,image:mediaUrl(x.image)}:x;
+const normalizeRows=rows=>rows.map(normalizeImage);
 const bySort=(a,b)=>(Number(a.sort_order||0)-Number(b.sort_order||0)) || String(a.id||"").localeCompare(String(b.id||""));
+
+const media=v=>typeof v==="string"?v:(v&&typeof v==="object"?(v.url||""):"");
+const normalize=x=>{ if(!x||typeof x!=="object")return x; const y={...x}; for(const k of ["image","file","schoolLogo","boardLogo"]){if(k in y)y[k]=media(y[k]);} return y; };
 const classNo=v=>({"6":"6","৬":"6","ষষ্ঠ":"6","৬ষ্ঠ":"6","7":"7","৭":"7","সপ্তম":"7","৭ম":"7","8":"8","৮":"8","অষ্টম":"8","৮ম":"8","9":"9","৯":"9","নবম":"9","৯ম":"9","10":"10","১০":"10","দশম":"10","১০ম":"10"}[String(v||"").trim()]||String(v||"").trim());
 
 export default async (req) => {
   const u=new URL(req.url),kind=u.searchParams.get("kind")||"";
   const d=await getData();
 
-  if(kind==="school") return json(d.school);
+  if(kind==="school") return json({...d.school,schoolLogo:media(d.school.schoolLogo),boardLogo:media(d.school.boardLogo)});
 
   if(kind==="leadership"){
     const president=(d.committee||[]).filter(x=>x.member_type==="সভাপতি").sort(bySort)[0]||null;
     const secretary=(d.committee||[]).filter(x=>x.member_type==="সদস্য সচিব").sort(bySort)[0]||null;
-    return json({headteacher:d.headteacher||null,president,secretary,school:{name:d.school.nameBn,address:d.school.address}});
+    return json({headteacher:normalizeImage(d.headteacher||null),president:normalizeImage(president),secretary:normalizeImage(secretary),school:{name:d.school.nameBn,address:d.school.address}});
   }
 
-  if(kind==="gallery") return json({data:[...(d.gallery||[])].filter(active).sort(bySort)});
+  if(kind==="gallery") return json({data:normalizeRows([...(d.gallery||[])].filter(active).sort(bySort))});
   if(kind==="history") return json({data:[...(d.history||[])].filter(active).sort(bySort)});
-  if(kind==="slides") return json({data:[...(d.slides||[])].filter(active).sort(bySort)});
-  if(kind==="staff") return json({data:[...(d.staff||[])].filter(x=>active(x)&&!x.is_headteacher).sort(bySort)});
-  if(kind==="merit") return json({data:[...(d.merit||[])].filter(active).sort(bySort)});
+  if(kind==="slides") return json({data:normalizeRows([...(d.slides||[])].filter(active).sort(bySort))});
+  if(kind==="staff") return json({data:normalizeRows([...(d.staff||[])].filter(x=>active(x)&&!x.is_headteacher).sort(bySort))});
+  if(kind==="merit") return json({data:normalizeRows([...(d.merit||[])].filter(active).sort(bySort))});
 
   if(kind==="committee"){
     const type=u.searchParams.get("type")||"";
     const id=u.searchParams.get("id")||"";
-    let rows=[...(d.committee||[])].filter(active).sort(bySort);
+    let rows=normalizeRows([...(d.committee||[])].filter(active).sort(bySort));
     if(type)rows=rows.filter(x=>x.member_type===type);
-    if(id)return json({data:rows.find(x=>String(x.id)===String(id))||null});
-    return json({data:rows});
+    if(id)return json({data:normalize(rows.find(x=>String(x.id)===String(id))||null)});
+    return json({data:rows.map(normalize)});
   }
 
   if(kind==="notices"){

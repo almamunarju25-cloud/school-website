@@ -56,3 +56,11 @@ Technical:
 - Functions: netlify/functions/
 - Storage: Netlify Blobs
 - Admin: /admin/
+
+
+FINAL AUDIT:
+- Original PHP Web Management sidebar/header/form/table CSS retained as visual source.
+- Original menu structure restored, including Branch, Class, Subject, document submenus, committee submenus, staff submenus, Facebook and YouTube.
+- Image values normalized to URL strings on public APIs.
+- Blob file metadata retained for PDF/image serving.
+- School logos, slider, gallery, staff, committee, merit, headteacher image mappings audited.

@@ -129,7 +129,7 @@
 
   async function loadServerNotices(){
     try{
-      const res=await fetch('notices-api.php',{cache:'no-store'});
+      const res=await fetch('/.netlify/functions/public-api?kind=notices',{cache:'no-store'});
       if(!res.ok)throw new Error('HTTP '+res.status);
       const data=await res.json();
       if(Array.isArray(data)){

@@ -110,7 +110,7 @@
 
   async function loadServerNotices(){
     try{
-      const res=await fetch('notices-api.php?v=20260902-direct-file-v5',{cache:'no-store'});
+      const res=await fetch('/.netlify/functions/public-api?kind=notices&v=20260902-direct-file-v5',{cache:'no-store'});
       if(!res.ok)throw new Error('HTTP '+res.status);
       const data=await res.json();
       serverRows=Array.isArray(data)?data:[];

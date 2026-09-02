@@ -2,8 +2,9 @@ import { getStore } from "@netlify/blobs";
 import { getData, MEDIA_STORE } from "./_shared.mjs";
 
 async function serve(ref,download){
+  if(typeof ref==="string"){ const m=ref.match(/^\/media\/(.+)$/); if(m) ref={key:m[1],name:"file"}; }
   if(!ref?.key) return new Response("ফাইল পাওয়া যায়নি।",{status:404,headers:{"Content-Type":"text/plain; charset=utf-8"}});
-  const store=getStore(MEDIA_STORE);
+  const store=getStore({ name: MEDIA_STORE, consistency: "strong" });
   const entry=await store.getWithMetadata(ref.key,{type:"blob"});
   if(!entry?.data)return new Response("ফাইল পাওয়া যায়নি।",{status:404});
   const meta=entry.metadata||{};
@@ -25,5 +26,5 @@ export default async (req) => {
     const type=u.searchParams.get("type")||"";
     item=[...(d.documents||[])].filter(x=>x.doc_type===type&&x.file).sort((a,b)=>String(b.id||"").localeCompare(String(a.id||"")))[0];
   }
-  return serve(item?.file,download);
+  return serve(item?.file_meta||item?.file,download);
 };

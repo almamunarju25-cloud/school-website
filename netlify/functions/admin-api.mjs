@@ -1,6 +1,6 @@
 import { getData, setData, json, validSession, newId } from "./_shared.mjs";
 
-const arrays=new Set(["slides","gallery","staff","merit","committee","notices","holidays","documents","history","students","routines"]);
+const arrays=new Set(["slides","gallery","staff","merit","committee","notices","holidays","documents","history","branches","classes","subjects","students","routines"]);
 
 export default async (req) => {
   if (!validSession(req)) return json({error:"unauthorized"},401);
