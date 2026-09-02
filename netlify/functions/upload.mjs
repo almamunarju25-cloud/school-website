@@ -10,7 +10,8 @@ export default async (req) => {
   if (file.size>5.5*1024*1024) return json({error:"file_too_large_max_5_5mb"},413);
   const ext=(file.name.split(".").pop()||"bin").replace(/[^a-z0-9]/gi,"").toLowerCase();
   const key=`uploads/${Date.now()}-${crypto.randomUUID().slice(0,8)}.${ext||"bin"}`;
-  const store=getStore(MEDIA_STORE);
-  await store.set(key,file,{metadata:{contentType:file.type||"application/octet-stream",filename:file.name}});
-  return json({ok:true,key,url:"/media/"+key});
+  const store=getStore({ name: MEDIA_STORE, consistency: "strong" });
+  const bytes=await file.arrayBuffer();
+  await store.set(key,bytes,{metadata:{contentType:file.type||"application/octet-stream",filename:file.name}});
+  return json({ok:true,key,url:`/.netlify/functions/media?key=${encodeURIComponent(key)}`});
 };
