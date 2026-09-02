@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>বিদ্যালয়ের ইতিহাস | বল্লভপুর উচ্চ বিদ্যালয়</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{box-sizing:border-box} body.history-page{margin:0;padding:30px 0 60px;background:#f5f7f8;font-family:"Kalpurush","Times New Roman",serif;color:#274b55}
+.history-shell{width:min(1255px,calc(100% - 32px));margin:0 auto;background:#fff;box-shadow:0 4px 22px rgba(30,79,88,.08);min-height:760px}
+.history-hero{height:135px;padding:24px 30px;background:linear-gradient(105deg,#397f87,#6db7c1);color:#fff;position:relative;overflow:hidden;display:flex;align-items:center}
+.history-hero:before,.history-hero:after{content:"";position:absolute;border:1px solid rgba(255,255,255,.18);border-radius:50%}.history-hero:before{width:118px;height:118px;right:-22px;top:-70px}.history-hero:after{width:72px;height:72px;right:58px;bottom:-52px}
+.home-header-btn{position:absolute;right:28px;top:50%;transform:translateY(-50%);z-index:3;display:inline-flex;align-items:center;gap:7px;padding:8px 14px;border:1px solid rgba(255,255,255,.65);border-radius:18px;background:rgba(255,255,255,.16);color:#fff;text-decoration:none;font-size:15px;backdrop-filter:blur(3px)}.home-header-btn:hover{background:rgba(255,255,255,.28)}
+.history-icon{width:52px;height:52px;border:1px solid rgba(255,255,255,.58);border-radius:9px;display:grid;place-items:center;margin-right:11px;font-size:24px}.kicker{font-size:15px}.history-hero h1{font-size:34px;font-weight:500;margin:1px 0}.history-hero p{font-size:15px;margin:3px 0 0}
+.history-content{padding:34px 34px 50px;min-height:610px}.section-head{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #d6e4e6;padding-bottom:9px;margin-bottom:28px;font-size:20px;color:#397681}.history-badge{font-size:14px;padding:7px 13px;border:1px solid #edd6a8;background:#fff9ed;color:#866d35;border-radius:14px}
+.history-text{border-left:2px solid #64b4bd;padding:10px 20px;font-size:20px;line-height:2.15;text-align:justify;color:#36565e}.history-text p{margin:0}.history-text p:first-child:first-letter{font-size:54px;float:left;line-height:.85;padding:6px 5px 0 0;color:#278596;font-family:Georgia,serif}
+.history-quote{margin-top:34px;border:1px solid #efd8ae;background:#fffdf9;border-radius:6px;padding:18px 20px;font-size:17px;color:#765f38}.history-quote i{color:#d99a36;margin-right:8px}.back-home{display:inline-block;margin-top:28px;color:#397f87;text-decoration:none;font-size:15px}
+@media(max-width:700px){body.history-page{padding-top:10px}.history-shell{width:calc(100% - 18px)}.history-hero h1{font-size:26px}.history-content{padding:22px 18px;min-height:540px}.history-text{font-size:15px}}
+
+/* GLOBAL_REQUIRED_STAR_INLINE */
+label em, label .required, label .required-star, .form-label em, .form-label .required, .form-label .required-star {
+  display:inline !important;
+  position:static !important;
+  float:none !important;
+  margin:0 0 0 3px !important;
+  padding:0 !important;
+  vertical-align:baseline !important;
+  white-space:nowrap !important;
+  color:#dc2626;
+  font-style:normal;
+}
+</style></head>
+<body class="history-page"><div class="history-shell">
+<header class="history-hero"><div class="history-icon"><i class="fa-solid fa-building-columns"></i></div><div><div class="kicker">— আমাদের পরিচয়</div><h1>বিদ্যালয়ের ইতিহাস</h1><p>শিক্ষার ঐতিহ্য — Ballavpur High School</p></div><a class="home-header-btn" href="index.html"><i class="fa-solid fa-house"></i> হোমপেজ</a></header>
+<main class="history-content"><div class="section-head"><span>ঐতিহ্য, অগ্রযাত্রা ও অর্জন</span><span class="history-badge"><i class="fa-solid fa-book-open"></i> আমাদের গল্প</span></div>
+<div class="history-text" id="historyText"><p>তথ্য লোড হচ্ছে...</p></div>
+<div class="history-quote" id="historyQuote"><i class="fa-solid fa-quote-left"></i> ওয়েব ম্যানেজমেন্টে সংরক্ষিত বিদ্যালয়ের ইতিহাস</div>
+</main></div>
+<script>
+(async function(){
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ try{
+  const r=await fetch('/.netlify/functions/public-api?kind=history&_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;
+  const j=await r.json(), rows=Array.isArray(j.data)?j.data:[];
+  const box=document.getElementById('historyText');
+  if(!rows.length){box.innerHTML='<p>ওয়েব ম্যানেজমেন্টে বিদ্যালয়ের ইতিহাস এখনো যোগ করা হয়নি।</p>';return}
+  box.innerHTML=rows.map(x=>'<p>'+esc(x.history_text||'').replace(/\r?\n/g,'<br>')+'</p>').join('');
+ }catch(e){document.getElementById('historyText').innerHTML='<p>বিদ্যালয়ের ইতিহাস লোড করা যায়নি।</p>'}
+})();
+</script>
+<script src="school-info.js?v=global-name-1"></script>
+</body></html>

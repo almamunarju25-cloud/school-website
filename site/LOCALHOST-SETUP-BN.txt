@@ -1,0 +1,30 @@
+BALLAVPUR INTEGRATED WEBSITE + ADMIN
+
+1. এই সম্পূর্ণ "ballovpur_integrated" folder টি কপি করুন:
+   C:\xampp\htdocs\ballovpur_integrated\
+
+2. XAMPP থেকে Apache + MySQL Start করুন।
+
+3. phpMyAdmin খুলুন:
+   http://localhost/phpmyadmin/
+
+4. database.sql import করুন। Database name: ballovpur_school
+
+5. Public Website:
+   http://localhost/ballovpur_integrated/
+   অথবা
+   http://localhost/ballovpur_integrated/index.html
+
+6. Admin Setup (প্রথমবার):
+   http://localhost/ballovpur_integrated/admin/setup.php
+
+7. Admin Login:
+   http://localhost/ballovpur_integrated/admin/login.php
+
+8. config.php default:
+   host = localhost
+   database = ballovpur_school
+   username = root
+   password = blank
+
+নোট: Public frontend এবং PHP admin একই project folder-এর মধ্যে একত্র করা হয়েছে।

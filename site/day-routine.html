@@ -1,0 +1,69 @@
+<!doctype html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>শ্রেণির দৈনিক রুটিন</title><link rel="stylesheet" href="style.css"><style>
+body{margin:0;background:#f6f8f7;font-family:Kalpurush,"Times New Roman",serif;color:#082c49}.pagegap{height:16px}.wrap{max-width:1230px;margin:0 auto 50px;background:#fff;min-height:680px;padding:24px 18px 40px;box-shadow:0 4px 18px #0002;border-top:3px solid #17885f}.pagehead{display:flex;align-items:center;justify-content:space-between;background:linear-gradient(120deg,#176f73,#66b7bd);color:#fff;padding:18px 22px;margin:-24px -18px 22px}.pagehead h2{margin:0;font-size:23px}.pagehead a{color:#fff;text-decoration:none;border:1px solid #fff;padding:9px 15px;border-radius:8px}.title{text-align:center;font-size:30px;margin:0 0 10px}.title:after{content:"";display:block;width:55px;height:2px;background:#d57922;margin:8px auto}.school{text-align:center;font-size:17px;margin-bottom:10px}.filter{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:end;background:#edf9f8;border:1px solid #c6dfdd;border-left:4px solid #f07800;padding:20px;border-radius:8px;margin-bottom:20px}.field{display:flex;flex-direction:column;gap:7px}.field label{font-size:17px}select{padding:12px;border:1px solid #bcd3d3;border-radius:5px;background:#fff;font-size:16px}button{height:46px;border:0;border-radius:6px;background:#078451;color:#fff;font-size:17px;cursor:pointer}.section{display:none;border:1px solid #c6dfdd;border-radius:8px;overflow:hidden}.section-title{background:#eaf7f6;border-left:4px solid #f07800;padding:12px 16px;font-size:19px}.tablebox{overflow:auto}table{width:100%;border-collapse:collapse;table-layout:fixed}th{background:#103d63;color:#fff;padding:14px 8px;border:1px solid #294e6d;font-size:15px}td{border:1px solid #d3d9dc;padding:15px 8px;text-align:center;font-size:17px;line-height:1.5;background:#fff}@media(max-width:850px){.wrap{margin:0;padding:14px}.filter{grid-template-columns:1fr 1fr}.tablebox table{min-width:1050px}}@media(max-width:520px){.filter{grid-template-columns:1fr}}
+
+/* GLOBAL_REQUIRED_STAR_INLINE */
+label em, label .required, label .required-star, .form-label em, .form-label .required, .form-label .required-star {
+  display:inline !important;
+  position:static !important;
+  float:none !important;
+  margin:0 0 0 3px !important;
+  padding:0 !important;
+  vertical-align:baseline !important;
+  white-space:nowrap !important;
+  color:#dc2626;
+  font-style:normal;
+}
+</style></head><body><div class="pagegap"></div><main class="wrap"><header class="pagehead"><h2 id="pageHeader">৬ষ্ঠ শ্রেণির রুটিন</h2><a href="index.html">← হোমপেজে ফিরে যান</a></header><h1 class="title" id="pageTitle">৬ষ্ঠ শ্রেণির রুটিন</h1><div class="school">বল্লভপুর উচ্চ বিদ্যালয় · নাগেশ্বরী, কুড়িগ্রাম</div><div class="filter"><div class="field"><label id="groupLabel">শাখা</label><select id="branch"><option>ক</option></select></div><div class="field"><label>বার</label><select id="day"></select></div><button onclick="render()">▣ রুটিন দেখুন</button></div><section class="section"><div class="section-title" id="sectionTitle"></div><div class="tablebox"><table><thead><tr><th>শ্রেণি</th><th>প্রথম ঘণ্টা</th><th>দ্বিতীয় ঘণ্টা</th><th>তৃতীয় ঘণ্টা</th><th>চতুর্থ ঘণ্টা</th><th>পঞ্চম ঘণ্টা</th><th>ষষ্ঠ ঘণ্টা</th><th>সপ্তম ঘণ্টা</th><th>অষ্টম ঘণ্টা</th></tr></thead><tbody id="body"></tbody></table></div></section></main><script>
+const days=['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'];
+const q=new URLSearchParams(location.search);
+const branch=document.getElementById('branch'),day=document.getElementById('day'),body=document.getElementById('body'),sectionTitle=document.getElementById('sectionTitle'),groupLabel=document.getElementById('groupLabel');
+const pageHeader=document.getElementById('pageHeader'),pageTitle=document.getElementById('pageTitle');
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let data={},classes=[],selectedClass='',groupMap={};
+const classMap={'6':'6','৬':'6','ষষ্ঠ':'6','৬ষ্ঠ':'6','7':'7','৭':'7','সপ্তম':'7','৭ম':'7','8':'8','৮':'8','অষ্টম':'8','৮ম':'8','9':'9','৯':'9','নবম':'9','৯ম':'9','10':'10','১০':'10','দশম':'10','১০ম':'10'};
+const classNumber=v=>classMap[String(v||'').trim()]||String(v||'').trim();
+const displayClass=v=>({'6':'৬ষ্ঠ','7':'৭ম','8':'৮ম','9':'৯ম','10':'১০ম'}[classNumber(v)]||String(v||''));
+const isDivisionClass=v=>['9','10'].includes(classNumber(v));
+const wantedNum=classNumber(q.get('class')||'6');
+day.innerHTML=days.map(d=>`<option value="${d}">${d}</option>`).join('');
+if(q.get('day')&&days.includes(q.get('day')))day.value=q.get('day');
+
+function setHeading(){
+ const title=displayClass(selectedClass||wantedNum)+' শ্রেণির রুটিন';
+ pageHeader.textContent=title; pageTitle.textContent=title; document.title=title;
+}
+function fillGroups(){
+ const c=selectedClass||wantedNum;
+ groupLabel.textContent=isDivisionClass(c)?'বিভাগ':'শাখা';
+ let groups=Array.isArray(groupMap[c])?groupMap[c]:[];
+ const wanted=q.get('branch')||q.get('division')||branch.value;
+ branch.innerHTML=groups.map(b=>`<option value="${esc(b)}">${esc(b)}</option>`).join('');
+ if(groups.includes(wanted)) branch.value=wanted;
+}
+function render(){
+ setHeading(); fillGroups();
+ const c=selectedClass||wantedNum,b=branch.value,d=day.value;
+ const groupName=isDivisionClass(c)?'বিভাগ':'শাখা';
+ if(!b){
+   sectionTitle.textContent=`${displayClass(c)} শ্রেণির রুটিন`;
+   body.innerHTML=`<tr><td colspan="9">ওয়েব ম্যানেজমেন্টে ${displayClass(c)} শ্রেণির জন্য কোনো ${groupName} যুক্ত করা হয়নি।</td></tr>`;
+   document.querySelector('.section').style.display='block'; return;
+ }
+ const arr=(((data[c]||{})[b]||{})[d])||Array(8).fill('');
+ sectionTitle.textContent=`${displayClass(c)} শ্রেণি · ${b} ${groupName} — ${d}-এর রুটিন`;
+ body.innerHTML=`<tr><td>${displayClass(c)}</td>${arr.map(v=>`<td>${esc(v||'—')}</td>`).join('')}</tr>`;
+ document.querySelector('.section').style.display='block';
+}
+(async function(){
+ try{
+  const r=await fetch('/.netlify/functions/public-api?kind=routine&_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;
+  const j=await r.json();data=j.data||{};classes=Array.isArray(j.classes)?j.classes:[];groupMap=j.groups||{};
+  selectedClass=classes.find(c=>classNumber(c)===wantedNum)||({'6':'৬ষ্ঠ','7':'৭ম','8':'৮ম','9':'৯ম','10':'১০ম'}[wantedNum]||'৬ষ্ঠ');
+  setHeading();fillGroups();render();
+ }catch(e){
+  selectedClass=({'6':'৬ষ্ঠ','7':'৭ম','8':'৮ম','9':'৯ম','10':'১০ম'}[wantedNum]||'৬ষ্ঠ');
+  setHeading();fillGroups();body.innerHTML='<tr><td colspan="9">রুটিনের তথ্য লোড করা যায়নি।</td></tr>';document.querySelector('.section').style.display='block';
+ }
+})();
+</script><script src="school-info.js?v=global-name-1"></script>
+</body></html>

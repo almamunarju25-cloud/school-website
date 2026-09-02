@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ভর্তি প্রবেশ পত্র - বল্লভপুর উচ্চ বিদ্যালয়</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box} body{margin:0;background:#eef4f1;font-family:'Noto Serif Bengali','Kalpurush','Times New Roman',serif;color:#143235}
+.page{width:min(1240px,96%);min-height:100vh;margin:0 auto;background:#fff;box-shadow:0 0 24px #173d2c20;padding:70px 38px 90px}
+.topbar{display:flex;justify-content:flex-end;margin-bottom:26px}.home{background:#0b7869;color:#fff;text-decoration:none;padding:10px 18px;border-radius:9px;font-size:16px}
+.search-card{width:min(570px,100%);margin:0 auto;border:1px solid #c9d3d0;border-radius:7px;padding:30px 40px 48px;background:#fff}
+h1{font-size:38px;text-align:center;margin:0 0 8px;font-weight:500}.hint{text-align:center;font-size:16px;line-height:1.7;margin:0 auto 20px;max-width:470px;color:#40575b}.rule{height:1px;background:#cfd6d4;margin:20px 0}
+label{display:block;font-size:17px;margin:0 0 8px}input{width:100%;height:48px;border:1px solid #cbd6d4;border-radius:6px;padding:0 14px;font:inherit;font-size:17px;outline:none}input:focus{border-color:#0b806e;box-shadow:0 0 0 3px #0b806e12}
+button{margin-top:18px;background:#ffb000;border:0;border-radius:7px;padding:11px 17px;font:inherit;font-size:17px;cursor:pointer;color:#1f1c00}button:hover{filter:brightness(.97)}
+.msg{margin-top:12px;font-size:14px;color:#b02a37;display:none}
+.admit-wrap{display:none;margin:44px auto 0;width:min(850px,100%)}
+.admit{border:2px solid #0b7869;border-radius:12px;overflow:hidden;background:#fff}.admit-head{background:linear-gradient(120deg,#075f55,#0f8a79);color:#fff;text-align:center;padding:22px}.admit-head h2{font-size:30px;margin:0 0 4px}.admit-head p{margin:3px 0;font-size:15px}
+.admit-body{padding:28px 34px;position:relative}.title{text-align:center;font-size:26px;font-weight:700;color:#0b7869;margin-bottom:24px;text-decoration:underline}.photo{position:absolute;right:34px;top:30px;width:105px;height:125px;border:1px dashed #8ba9a3;border-radius:4px;display:grid;place-items:center;font-size:13px;color:#6d8480;text-align:center}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px 26px;padding-right:140px}.field{border-bottom:1px dotted #9aacaa;padding:6px 0;font-size:16px}.field b{display:inline-block;min-width:125px}.exam{margin-top:24px;border:1px solid #d4dfdc;border-radius:8px;padding:15px;background:#f7fbfa;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;font-size:15px}.signs{display:flex;justify-content:space-between;margin-top:52px;font-size:14px}.sig{width:190px;border-top:1px solid #667;text-align:center;padding-top:7px}.actions{text-align:center}.actions button{background:#0b7869;color:white;margin:18px 5px 0}.actions .back{background:#64748b}
+@media(max-width:700px){.page{padding:35px 15px 60px}.search-card{padding:25px 20px}h1{font-size:30px}.grid{grid-template-columns:1fr;padding-right:0;padding-top:145px}.photo{left:50%;right:auto;transform:translateX(-50%)}.exam{grid-template-columns:1fr}.signs{gap:20px}.sig{width:45%}}
+@media print{body{background:#fff}.page{width:100%;box-shadow:none;padding:0}.topbar,.search-card,.actions{display:none!important}.admit-wrap{display:block!important;margin:0;width:100%}.admit{border:2px solid #000}.admit-head{background:#fff!important;color:#000;border-bottom:2px solid #000}.title{color:#000}}
+
+/* GLOBAL_REQUIRED_STAR_INLINE */
+label em, label .required, label .required-star, .form-label em, .form-label .required, .form-label .required-star {
+  display:inline !important;
+  position:static !important;
+  float:none !important;
+  margin:0 0 0 3px !important;
+  padding:0 !important;
+  vertical-align:baseline !important;
+  white-space:nowrap !important;
+  color:#dc2626;
+  font-style:normal;
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar"><a class="home" href="index.html">⌂ হোমপেজ</a></div>
+  <section class="search-card" id="searchCard">
+    <h1>ভর্তি প্রবেশ পত্র ডাউনলোড</h1>
+    <p class="hint">ভর্তির সময় পিতার যে মোবাইল নম্বর দিয়েছিলেন সেটি লিখে প্রবেশ পত্র প্রিন্ট করুন</p>
+    <div class="rule"></div>
+    <label for="fatherPhone">পিতার ফোন নাম্বার</label>
+    <input id="fatherPhone" type="tel" inputmode="numeric" maxlength="11" placeholder="01XXXXXXXXX">
+    <button type="button" onclick="showAdmit()">Print Admit</button>
+    <div class="msg" id="msg">১১ সংখ্যার সঠিক মোবাইল নম্বর লিখুন।</div>
+  </section>
+
+  <section class="admit-wrap" id="admitWrap">
+    <div class="admit" id="admitCard">
+      <div class="admit-head">
+        <h2>বল্লভপুর উচ্চ বিদ্যালয়</h2>
+        <p>নাগেশ্বরী, কুড়িগ্রাম</p>
+        <p>শিক্ষার্থী ভর্তি পরীক্ষা — ২০২৬</p>
+      </div>
+      <div class="admit-body">
+        <div class="title">ভর্তি পরীক্ষার প্রবেশ পত্র</div>
+        <div class="photo">শিক্ষার্থীর<br>ছবি</div>
+        <div class="grid">
+          <div class="field"><b>শিক্ষার্থীর নাম:</b> <span id="studentName">________________</span></div>
+          <div class="field"><b>আবেদন নম্বর:</b> <span id="applicationNo"></span></div>
+          <div class="field"><b>পিতার নাম:</b> <span id="fatherName">________________</span></div>
+          <div class="field"><b>পিতার মোবাইল:</b> <span id="phoneView"></span></div>
+          <div class="field"><b>ভর্তির শ্রেণি:</b> <span id="className">________</span></div>
+          <div class="field"><b>রোল নম্বর:</b> <span id="rollNo"></span></div>
+        </div>
+        <div class="exam">
+          <div><b>পরীক্ষার তারিখ:</b><br>বিদ্যালয় কর্তৃক নির্ধারিত</div>
+          <div><b>পরীক্ষার সময়:</b><br>বিদ্যালয় কর্তৃক নির্ধারিত</div>
+          <div><b>কেন্দ্র:</b><br>বল্লভপুর উচ্চ বিদ্যালয়</div>
+        </div>
+        <div class="signs"><div class="sig">শিক্ষার্থীর স্বাক্ষর</div><div class="sig">প্রধান শিক্ষকের স্বাক্ষর</div></div>
+      </div>
+    </div>
+    <div class="actions"><button onclick="window.print()">প্রবেশ পত্র প্রিন্ট করুন</button><button class="back" onclick="hideAdmit()">ফিরে যান</button></div>
+  </section>
+</div>
+<script>
+function showAdmit(){
+ const el=document.getElementById('fatherPhone');
+ const phone=el.value.replace(/\D/g,'');
+ const msg=document.getElementById('msg');
+ if(!/^01\d{9}$/.test(phone)){msg.style.display='block';el.focus();return}
+ msg.style.display='none';
+ document.getElementById('phoneView').textContent=phone;
+ const tail=phone.slice(-5);
+ document.getElementById('applicationNo').textContent='ADM-2026-'+tail;
+ document.getElementById('rollNo').textContent=parseInt(tail,10)%900+100;
+ document.getElementById('admitWrap').style.display='block';
+ document.getElementById('admitWrap').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function hideAdmit(){document.getElementById('admitWrap').style.display='none';document.getElementById('searchCard').scrollIntoView({behavior:'smooth'})}
+</script>
+<script src="school-info.js?v=global-name-1"></script>
+</body>
+</html>

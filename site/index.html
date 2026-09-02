@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>বল্লভপুর উচ্চ বিদ্যালয় | Ballovpur High School</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style id="reference-notice-board-force">
+/* Reference screenshot 60: fixed two-column notice board */
+.ref-notice-board{
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-height:420px!important;
+  margin:0 0 18px!important;
+  display:grid!important;
+  grid-template-columns:28% 72%!important;
+  background:#fff!important;
+  border:1px solid #d9e7df!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+  box-shadow:0 9px 25px rgba(24,76,58,.08)!important;
+  position:relative!important;
+}
+.ref-notice-art{
+  min-height:420px!important;
+  position:relative!important;
+  background:#dff3e9!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+  border-right:1px solid #d7e8df!important;
+}
+.ref-notice-art:before{
+  content:""!important;position:absolute!important;inset:0!important;
+  background:radial-gradient(circle at 18% 15%,rgba(255,255,255,.58) 0 2px,transparent 3px) 0 0/32px 32px!important;
+  opacity:.28!important;
+}
+.ref-clipboard{position:relative!important;width:185px!important;height:245px!important;z-index:2!important}
+.ref-board-back{
+  position:absolute!important;left:12px!important;top:27px!important;width:142px!important;height:196px!important;
+  background:linear-gradient(155deg,#0d6a4e,#064b39)!important;border-radius:16px!important;
+  transform:rotate(-4deg)!important;box-shadow:0 16px 26px rgba(11,78,57,.25)!important
+}
+.ref-paper{
+  position:absolute!important;left:28px!important;top:42px!important;width:132px!important;height:180px!important;
+  background:#fff9e8!important;border-radius:4px 4px 18px 8px!important;transform:rotate(2deg)!important;
+  box-shadow:0 8px 18px rgba(53,62,48,.12)!important;display:flex!important;align-items:center!important;
+  justify-content:center!important;color:#14533f!important;font-family:inherit!important
+}
+.ref-paper:after{
+  content:""!important;position:absolute!important;right:-1px!important;bottom:-1px!important;width:34px!important;height:34px!important;
+  background:linear-gradient(135deg,transparent 49%,#eee4c9 50%)!important;border-radius:0 0 15px 0!important
+}
+.ref-paper strong{font-size:31px!important;font-weight:700!important;line-height:1!important;position:relative!important;z-index:2!important}
+.ref-pin{position:absolute!important;top:45px!important;color:#ef6e11!important;font-size:21px!important;line-height:1!important}
+.ref-clip{
+  position:absolute!important;left:50%!important;top:-22px!important;transform:translateX(-50%)!important;
+  width:72px!important;height:42px!important;border-radius:11px 11px 7px 7px!important;
+  background:linear-gradient(#166f52,#0a563f)!important;box-shadow:0 5px 9px rgba(0,0,0,.15)!important
+}
+.ref-ring{
+  position:absolute!important;left:50%!important;top:-20px!important;transform:translateX(-50%)!important;
+  width:31px!important;height:31px!important;border:8px solid #0c5942!important;border-radius:50%!important;
+  background:#dff3e9!important;box-sizing:border-box!important
+}
+.ref-bell{
+  position:absolute!important;right:-1px!important;top:31px!important;width:47px!important;height:47px!important;border-radius:50%!important;
+  display:grid!important;place-items:center!important;background:linear-gradient(145deg,#16865f,#096146)!important;
+  color:#fff!important;font-size:19px!important;border:4px solid rgba(255,255,255,.22)!important;box-shadow:0 7px 15px rgba(0,99,67,.22)!important
+}
+.ref-leaf{position:absolute!important;display:block!important;background:linear-gradient(160deg,#91c830,#2f9049)!important;border-radius:90% 8% 90% 8%!important;z-index:5!important}
+.ref-leaf-1{width:32px!important;height:60px!important;left:4px!important;bottom:1px!important;transform:rotate(-33deg)!important}
+.ref-leaf-2{width:25px!important;height:48px!important;left:32px!important;bottom:-2px!important;transform:rotate(18deg)!important}
+
+.ref-notice-content{
+  min-width:0!important;min-height:420px!important;padding:28px 36px 24px!important;box-sizing:border-box!important;
+  background:#fff!important;display:flex!important;flex-direction:column!important
+}
+.ref-notice-kicker{
+  color:#ef6c0d!important;font-size:13px!important;font-weight:600!important;margin:0 0 2px!important;
+  letter-spacing:.1px!important
+}
+.ref-notice-title{border-bottom:1px solid #ebded2!important;margin:0 0 8px!important;padding:0 0 14px!important;position:relative!important}
+.ref-notice-title:after{
+  content:""!important;position:absolute!important;left:0!important;bottom:-1px!important;width:150px!important;height:2px!important;
+  background:linear-gradient(90deg,#08744f,#ef7b11)!important
+}
+.ref-notice-title h2{
+  margin:0!important;color:#0e4938!important;font-size:31px!important;line-height:1.15!important;font-weight:500!important;font-family:inherit!important
+}
+.ref-notice-list{display:block!important;flex:1!important;margin:0!important;padding:0!important}
+.ref-notice-list .premium-notice-item{
+  min-height:49px!important;display:flex!important;align-items:center!important;gap:13px!important;
+  padding:5px 4px!important;margin:0!important;border:0!important;border-bottom:1px dashed #ccd9d2!important;
+  border-radius:0!important;background:transparent!important;text-decoration:none!important;box-shadow:none!important;
+  transform:none!important;color:#203d33!important
+}
+.ref-notice-list .premium-notice-item:last-child{border-bottom:0!important}
+.ref-notice-list .premium-notice-item:hover{background:#f6fbf8!important;transform:none!important;box-shadow:none!important}
+.ref-notice-list .notice-number{
+  flex:0 0 27px!important;width:27px!important;height:27px!important;border-radius:50%!important;
+  display:grid!important;place-items:center!important;background:#0b7b55!important;color:#fff!important;
+  font-size:12px!important;font-weight:500!important;box-shadow:0 3px 7px rgba(4,111,73,.18)!important
+}
+.ref-notice-list .notice-copy{display:block!important;min-width:0!important;flex:1!important}
+.ref-notice-list .notice-copy strong{
+  display:block!important;color:#233f35!important;font-size:16px!important;line-height:1.35!important;font-weight:500!important;
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important
+}
+.ref-notice-list .notice-copy small{display:none!important}
+.ref-notice-list .notice-row-arrow{display:none!important}
+.ref-all-notice{text-align:right!important;margin-top:14px!important}
+.ref-all-notice a{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;
+  min-height:41px!important;padding:0 20px!important;border-radius:8px!important;text-decoration:none!important;
+  background:linear-gradient(135deg,#ef7510,#e85a00)!important;color:#fff!important;font-size:13px!important;font-weight:600!important;
+  box-shadow:0 7px 15px rgba(226,91,0,.20)!important;transition:.18s ease!important
+}
+.ref-all-notice a:hover{transform:translateY(-2px)!important;box-shadow:0 10px 20px rgba(226,91,0,.27)!important}
+
+@media(max-width:800px){
+  .ref-notice-board{grid-template-columns:32% 68%!important}
+  .ref-notice-content{padding:24px 22px 20px!important}
+  .ref-notice-list .notice-copy strong{font-size:14px!important}
+}
+@media(max-width:650px){
+  .ref-notice-board{grid-template-columns:1fr!important}
+  .ref-notice-art{min-height:250px!important;border-right:0!important;border-bottom:1px solid #d7e8df!important}
+  .ref-notice-content{min-height:auto!important;padding:22px 17px 20px!important}
+  .ref-notice-title h2{font-size:27px!important}
+  .ref-notice-list .notice-copy strong{white-space:normal!important;font-size:14px!important}
+}
+</style>
+
+
+<style id="notice-direct-file-css">
+.notice-no-file{cursor:default!important;opacity:.72!important}
+.action-btn.disabled{opacity:.48!important;pointer-events:none!important;cursor:not-allowed!important}
+</style>
+
+<style id="holiday-public-direct-css">
+.holiday-track[data-holiday-track]{display:flex!important;align-items:center!important;gap:12px!important;min-height:48px!important}
+.holiday-public-item{display:inline-flex!important;align-items:center!important;gap:6px!important;flex:0 0 auto!important}
+.holiday-public-view{display:inline-flex!important;align-items:center!important;gap:8px!important;text-decoration:none!important;color:inherit!important;white-space:nowrap!important}
+.holiday-public-view strong{color:#e56f09!important}
+.holiday-public-view:hover span{text-decoration:underline!important}
+.holiday-public-view.disabled{pointer-events:none!important;opacity:.65!important}
+.holiday-public-download{
+  width:30px!important;height:30px!important;border-radius:50%!important;display:inline-grid!important;place-items:center!important;
+  background:#fff4e8!important;color:#dc6f0b!important;border:1px solid #f0cfaa!important;text-decoration:none!important;
+  transition:.18s ease!important
+}
+.holiday-public-download:hover{background:#e9780d!important;color:#fff!important;transform:translateY(-1px)!important}
+.holiday-empty-public{color:#7d8b94!important;font-size:12px!important}
+</style>
+
+<style id="footer-navigation-enhancement">
+.footer .footer-column a{transition:color .18s ease,transform .18s ease}
+.footer-main-link,.footer-important>a,.footer-contact-link,.footer-social{
+  display:flex!important;align-items:center!important;text-decoration:none!important
+}
+.footer-main-link{gap:0!important}
+.footer-main-link:hover,.footer-important>a:hover,.footer-contact-link:hover,.footer-social:hover{transform:translateX(3px)}
+.footer-menu-group{border-bottom:1px solid rgba(255,255,255,.10)}
+.footer-menu-group summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:7px 0;color:inherit;font-size:inherit
+}
+.footer-menu-group summary::-webkit-details-marker{display:none}
+.footer-menu-group summary span{display:inline-flex;align-items:center;gap:7px}
+.footer-menu-group summary>i{font-size:10px;transition:transform .18s ease}
+.footer-menu-group[open] summary>i{transform:rotate(180deg)}
+.footer-submenu{padding:0 0 6px 22px;display:grid;gap:2px}
+.footer-submenu a{font-size:.92em!important;opacity:.88}
+.footer-contact-link{margin:7px 0}
+.footer-social{margin-top:7px}
+.footer-social.facebook i{color:#66a8ff}
+.footer-social.youtube i{color:#ff6969}
+.footer-address{display:flex;align-items:flex-start;gap:8px}
+@media(max-width:700px){
+  .footer-menu-group summary{padding:9px 0}
+  .footer-submenu{padding-left:18px}
+}
+
+.footer-nav-groups .footer-main-link i,.footer-nav-groups summary i{display:none!important}
+.footer-nav-groups .footer-main-link{padding:4px 0!important}
+</style>
+
+<style id="footer-icon-spacing-fix">
+/* Footer icon and text spacing */
+.footer .footer-important > a,
+.footer .footer-contact-link,
+.footer .footer-social,
+.footer .footer-address{
+    gap: 12px !important;
+}
+.footer .footer-important > a > i,
+.footer .footer-contact-link > i,
+.footer .footer-social > i,
+.footer .footer-address > i{
+    flex: 0 0 18px !important;
+    width: 18px !important;
+    text-align: center !important;
+    margin-right: 2px !important;
+}
+</style>
+
+<style id="contact-action-link-fix">
+.contact-box .contact-action-row{
+  display:flex!important;align-items:center;gap:12px;text-decoration:none;color:inherit;
+  padding:10px 0;cursor:pointer;transition:.18s ease;
+}
+.contact-box .contact-action-row:hover{transform:translateX(3px);color:#187c8b}
+.contact-box .contact-action-row>i{width:20px;flex:0 0 20px;text-align:center}
+.contact-box .contact-action-row span{display:block}
+</style>
+
+<style id="dynamic-teacher-merit-css">
+.dynamic-loading,.dynamic-empty{
+    min-width:100%;min-height:170px;display:flex;align-items:center;justify-content:center;
+    gap:10px;color:#71878c;font-size:13px;text-align:center;padding:28px;
+}
+.dynamic-empty i{font-size:22px;color:#3f929e}
+</style>
+
+</head>
+<body>
+<div class="website">
+<header class="header colorful-header">
+    <div class="header-inner">
+        <div class="logo-box left-logo"><img src="sc.png" data-school-logo="school" alt="বিদ্যালয়ের লোগো"></div>
+        <div class="school-title">
+            <h1 data-school="nameBn">বল্লভপুর উচ্চ বিদ্যালয়</h1>
+            <h2 data-school="nameEn">Ballovpur High School</h2>
+            <div class="location" data-school="address">পোস্ট: নাগেশ্বরী, উপজেলা: নাগেশ্বরী, জেলা: কুড়িগ্রাম</div>
+            <div class="contact-row">
+                <span><i class="fa-solid fa-phone"></i> মোবাইল: <span data-school="phone">01792838223</span></span>
+                <span><i class="fa-solid fa-envelope"></i> Email: <span data-school="email">ballovpurhighschool@gmail.com</span></span>
+            </div>
+        </div>
+        <div class="logo-box right-logo"><img src="sc.png" data-school-logo="board" alt="শিক্ষা বোর্ডের লোগো"></div>
+    </div>
+
+    <div class="notice-bar">
+        <div class="notice-title"><i class="fa-solid fa-bullhorn"></i><span>জরুরি নোটিশ</span></div>
+        <div class="notice-scroll"><div class="notice-track"></div></div>
+    </div>
+
+    
+    <div class="menu-anchor-targets" aria-hidden="true">
+        <span id="about"></span><span id="school-history"></span><span id="about-other"></span>
+        <span id="admission"></span><span id="admission-form"></span><span id="admission-card"></span><span id="application-list"></span><span id="admission-other"></span>
+        <span id="class-routine"></span><span id="class-6"></span><span id="class-7"></span><span id="class-8"></span><span id="class-9"></span><span id="class-10"></span>
+        <span id="day-routine"></span><span id="sunday"></span><span id="monday"></span><span id="tuesday"></span><span id="wednesday"></span><span id="thursday"></span>
+    </div>
+<nav class="main-menu" aria-label="প্রধান মেনু">
+        <div class="menu-inner">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button"><i class="fa-solid fa-bars"></i> মেনু</button>
+            <ul id="mainMenu">
+                <li><a href="index.html" class="active"><i class="fa-solid fa-house"></i> হোম</a></li>
+
+                <li class="has-submenu" tabindex="0">
+                    <a href="#about">আমাদের সম্পর্কে <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="principal-message.html">প্রধান শিক্ষকের বার্তা</a></li>
+                        <li><a href="school-history.html">স্কুলের ইতিহাস</a></li>
+                        <li><a href="teacher-info.html">শিক্ষক তথ্য</a></li>
+                        <li><a href="other-info.html">অন্যান্য তথ্য</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu" tabindex="0">
+                    <a href="#admission">ভর্তি <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="admission-form.html">ভর্তি ফরম</a></li>
+                        <li><a href="admit-card.html">প্রবেশ পত্র</a></li>
+                        <li><a href="application-list.html">আবেদনের তালিকা</a></li>
+                        <li><a href="#admission-other">অন্যান্য</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu" tabindex="0">
+                    <a href="#class-routine">রুটিন (শ্রেণি) <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="class-routine.html?class=6">৬ষ্ঠ শ্রেণি</a></li>
+                        <li><a href="class-routine.html?class=7">৭ম শ্রেণি</a></li>
+                        <li><a href="class-routine.html?class=8">৮ম শ্রেণি</a></li>
+                        <li><a href="class-routine.html?class=9">৯ম শ্রেণি</a></li>
+                        <li><a href="class-routine.html?class=10">১০ম শ্রেণি</a></li>
+                    </ul>
+                </li>
+
+                <li class="has-submenu" tabindex="0">
+                    <a href="#day-routine">রুটিন (দিন) <i class="fa-solid fa-angle-down"></i></a>
+                    <ul class="submenu">
+                        <li><a href="day-routine.html?class=6">৬ষ্ঠ শ্রেণি</a></li>
+                        <li><a href="day-routine.html?class=7">৭ম শ্রেণি</a></li>
+                        <li><a href="day-routine.html?class=8">৮ম শ্রেণি</a></li>
+                        <li><a href="day-routine.html?class=9">৯ম শ্রেণি</a></li>
+                        <li><a href="day-routine.html?class=10">১০ম শ্রেণি</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="student-info.html">শিক্ষার্থী</a></li>
+                <li><a href="/admin/">ওয়েব ম্যানেজমেন্ট</a></li>
+                <li><a href="#school-management">স্কুল ম্যানেজমেন্ট</a></li>
+                <li><a href="gallery.html">গ্যালারী</a></li>
+                <li><a href="#contact">যোগাযোগ</a></li>
+            </ul>
+            <div class="live-clock" id="liveClock"><i class="fa-regular fa-clock"></i> <span>০০:০০:০০</span></div>
+        </div>
+    </nav>
+</header>
+
+<main><div class="main-container">
+<div class="content-area">
+    <section class="slider-section"><div class="slider" id="slider">
+        <div class="slide active" id="sliderLoading"><div class="slide-caption"><span>তথ্য</span><h2>স্লাইডার লোড হচ্ছে...</h2><p>ওয়েব ম্যানেজমেন্টের তথ্য থেকে</p></div></div>
+        <button class="slider-btn prev" id="prevSlide"><i class="fa-solid fa-angle-left"></i></button><button class="slider-btn next" id="nextSlide"><i class="fa-solid fa-angle-right"></i></button>
+        <div class="slider-dots"></div>
+    </div></section>
+
+    <section class="section-box holiday-box" id="holiday-notices">
+        <div class="section-title orange-title"><span><i class="fa-solid fa-calendar-xmark"></i></span><h3>ছুটির নোটিশ</h3></div>
+        <div class="holiday-scroll"><div class="holiday-track" data-holiday-track></div></div>
+    </section>
+
+    <section class="ref-notice-board" id="notice-board" aria-labelledby="noticeShowcaseTitle">
+        <div class="ref-notice-art" aria-hidden="true">
+            <div class="ref-clipboard">
+                <div class="ref-board-back"></div>
+                <div class="ref-paper">
+                    <div class="ref-clip"><span class="ref-ring"></span></div>
+                    <span class="ref-pin">●</span>
+                    <strong>নোটিশ</strong>
+                </div>
+                <div class="ref-bell"><i class="fa-solid fa-bell"></i></div>
+                <span class="ref-leaf ref-leaf-1"></span>
+                <span class="ref-leaf ref-leaf-2"></span>
+            </div>
+        </div>
+
+        <div class="ref-notice-content">
+            <div class="ref-notice-kicker">গুরুত্বপূর্ণ ঘোষণা</div>
+            <div class="ref-notice-title">
+                <h2 id="noticeShowcaseTitle">নোটিশ বোর্ড</h2>
+            </div>
+            <div class="notice-list ref-notice-list" data-notice-board></div>
+            <div class="ref-all-notice">
+                <a href="all-notices.html">সকল নোটিশ দেখুন <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="section-box statistics-box">
+        <div class="section-heading"><span>শিক্ষার্থীদের সংক্ষিপ্ত তথ্য</span><h2>শিক্ষার্থী পরিসংখ্যান</h2><div class="heading-line"></div></div>
+        <div class="chart-grid">
+            <div class="chart-card"><h3><i class="fa-solid fa-people-group"></i> ধর্মভিত্তিক শিক্ষার্থী</h3><canvas id="religionChart" aria-label="ধর্মভিত্তিক শিক্ষার্থী তথ্য"></canvas><div class="canvas-tooltip" id="religionChartTooltip"></div></div>
+            <div class="chart-card"><h3><i class="fa-solid fa-venus-mars"></i> জেন্ডার ভিত্তিক শিক্ষার্থী</h3><canvas id="genderChart" aria-label="জেন্ডার ভিত্তিক শিক্ষার্থী তথ্য"></canvas><div class="canvas-tooltip" id="genderChartTooltip"></div></div>
+            <div class="chart-card"><h3><i class="fa-solid fa-school"></i> শ্রেণি ভিত্তিক শিক্ষার্থী</h3><canvas id="classChart" aria-label="শ্রেণিভিত্তিক শিক্ষার্থী তথ্য"></canvas><div class="canvas-tooltip" id="classChartTooltip"></div></div>
+        </div>
+    </section>
+
+    <section class="section-box">
+        <div class="section-heading"><span>প্রয়োজনীয় ওয়েবসাইট এক নজরে</span><h2>গুরুত্বপূর্ণ তথ্য ও লিংক</h2><div class="heading-line"></div></div>
+        <div class="website-link-columns">
+            <div><h3>শিক্ষা ও সরকারি গুরুত্বপূর্ণ ওয়েবসাইট</h3><div class="website-links single-col">
+                <a href="https://moedu.gov.bd/" target="_blank"><i class="fa-solid fa-building-columns"></i><span><b>শিক্ষা মন্ত্রণালয়</b><small>Ministry of Education</small></span></a>
+                <a href="https://dshe.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>মাধ্যমিক ও উচ্চ শিক্ষা অধিদপ্তর</b><small>DSHE</small></span></a>
+                <a href="https://dme.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>মাদ্রাসা শিক্ষা অদিদপ্তর</b><small>Directorate of Madrasah Education</small></span></a>
+                <a href="https://techedu.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>কারিগরি শিক্ষা অদিদপ্তর</b><small>Directorate of Technical Education</small></span></a>
+                 <a href="https://banbeis.gov.bd/" target="_blank"><i class="fa-solid fa-graduation-cap"></i><span><b>ব্যানবেইস</b><small>Bangladesh Bureau of Educational Information and Statistics</small></span></a>
+                  <a href="https://www.teachers.gov.bd/" target="_blank"><i class="fa-solid fa-graduation-cap"></i><span><b>শিক্ষক বাতায়ন</b><small>Teacher's Portal</small></span></a>
+                   <a href="https://ictd.gov.bd/" target="_blank"><i class="fa-solid fa-globe"></i><span><b>তথ্য ও যোগাযোগ প্রযুক্তি বিভাগ</b><small>Ict Division</small></span></a>
+                    <a href="https://bangladesh.gov.bd/" target="_blank"><i class="fa-solid fa-globe"></i><span><b>বাংলাদেশ জাতীয় তথ্য বাতায়ন</b><small>National </small></span></a>
+                     <a href="https://hsp.pmeat.gov.bd/" target="_blank"><i class="fa-solid fa-globe"></i><span><b>সমন্বিত উপবৃত্তি কর্মসূচি</b><small>Student Service</small></span></a>
+            </div></div>
+            <div><h3>শিক্ষাবোর্ড সমূহ</h3><div class="website-links single-col">
+                <a href="https://dinajpureducationboard.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>দিনাজপুর শিক্ষা বোর্ড</b><small>Board of Intermediate and Secondary Education, Dinajpur</small></span></a>
+                <a href="https://dhakaeducationboard.gov.bd/site/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>ঢাকা শিক্ষা বোর্ড</b><small>Board of Intermediate and Secondary Education, Dhaka</small></span></a>
+                <a href="https://rajshahieducationboard.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>রাজশাহী শিক্ষা বোর্ড</b><small>Board of Intermediate and Secondary Education, Rajshahi</small></span></a>
+                <a href="https://www.jessoreboard.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>যশোর শিক্ষা বোর্ড</b><small>Board of Intermediate and Secondary Education, Jessore</small></span></a>
+                <a href="https://web.bise-ctg.gov.bd/bisectg" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>চট্টগ্রাম শিক্ষা বোর্ড</b><small>Board of Intermediate and Secondary Education, Chittagong</small></span></a>
+                <a href="https://barisalboard.portal.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>বরিশাল শিক্ষা বোর্ড</b><small>Board of Intermediate and Secondary Education, Barisal</small></span></a>
+                <a href="https://comillaboard.portal.gov.bd/" target="_blank" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>কুমিল্লা শিক্ষা বোর্ড</b><small>Board of Intermediate and Secondary Education, Comilla</small></span></a>
+                <a href="https://sylhetboard.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>সিলেট শিক্ষা বোর্ড</b><small>Board of Intermediate and Secondary Education, Sylhet</small></span></a>
+                <a href="https://www.mymensingheducationboard.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i><span><b>ময়মনসিংহ শিক্ষা বোর্ড</b><small>Board of Intermediate and Secondary Education, Mymensingh</small></span></a>
+            </div></div>
+        </div>
+    </section>
+
+    <section class="section-box"><div class="section-heading"><span>বিদ্যালয় পরিচালনা</span><h2>ব্যবস্থাপনা কমিটি</h2><div class="heading-line"></div></div>
+        <div class="committee-grid four-cards">
+            <div class="committee-card"><div class="committee-icon"><i class="fa-solid fa-user-tie"></i></div><h3>সভাপতি</h3><p>ব্যবস্থাপনা কমিটি</p><a href="chairman-message.html">বিস্তারিত</a></div>
+            <div class="committee-card"><div class="committee-icon"><i class="fa-solid fa-user-gear"></i></div><h3>সদস্য সচিব</h3><p id="committeeSecretaryName">প্রধান শিক্ষক</p><a href="principal-message.html">বিস্তারিত</a></div>
+            <div class="committee-card"><div class="committee-icon"><i class="fa-solid fa-user"></i></div><h3>অভিভাবক সদস্য</h3><p>ব্যবস্থাপনা কমিটির সদস্য</p><a href="committee-members.html?type=%E0%A6%85%E0%A6%AD%E0%A6%BF%E0%A6%AD%E0%A6%BE%E0%A6%AC%E0%A6%95%20%E0%A6%B8%E0%A6%A6%E0%A6%B8%E0%A7%8D%E0%A6%AF">বিস্তারিত</a></div>
+            <div class="committee-card"><div class="committee-icon"><i class="fa-solid fa-people-group"></i></div><h3>সদস্য</h3><p>বিদ্যালয় পরিচালনা কমিটি</p><a href="committee-members.html?type=%E0%A6%B8%E0%A6%A6%E0%A6%B8%E0%A7%8D%E0%A6%AF">বিস্তারিত</a></div>
+        </div>
+    </section>
+
+    <section class="section-box" id="teachers"><div class="section-heading"><span>আমাদের পরিবার</span><h2>শিক্ষক-কর্মচারী বৃন্দ</h2><div class="heading-line"></div></div>
+        <div class="carousel-wrap person-carousel-wrap">
+            <button class="carousel-btn carousel-prev" type="button" aria-label="আগের শিক্ষক-কর্মচারী" data-target="person-scroll"><i class="fa-solid fa-angle-left"></i></button>
+            <div class="horizontal-scroll person-scroll"><div class="dynamic-loading">শিক্ষক-কর্মচারীর তথ্য লোড হচ্ছে...</div></div>
+            <button class="carousel-btn carousel-next" type="button" aria-label="পরের শিক্ষক-কর্মচারী" data-target="person-scroll"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </section>
+
+    <section class="section-box achievers-section">
+        <div class="section-heading"><span>সাফল্যের গল্প</span><h2>কৃতি শিক্ষার্থী</h2><div class="heading-line"></div></div>
+        <div class="carousel-wrap achiever-carousel-wrap">
+            <button class="carousel-btn carousel-prev" type="button" aria-label="আগের কৃতি শিক্ষার্থী" data-target="achiever-scroll"><i class="fa-solid fa-angle-left"></i></button>
+            <div class="horizontal-scroll achiever-scroll"><div class="dynamic-loading">কৃতি শিক্ষার্থীর তথ্য লোড হচ্ছে...</div></div>
+            <button class="carousel-btn carousel-next" type="button" aria-label="পরের কৃতি শিক্ষার্থী" data-target="achiever-scroll"><i class="fa-solid fa-angle-right"></i></button>
+        </div>
+    </section>
+
+    <section class="section-box documents-section"><div class="section-heading"><span>প্রাতিষ্ঠানিক নথি</span><h2>অনুমোদন ও স্বীকৃতি</h2><p>বিদ্যালয়ের অনুমতি, স্বীকৃতি, এমপিও, অনুমোদিত শাখা ও অন্যান্য গুরুত্বপূর্ণ নথি এক জায়গায় দেখুন</p><div class="heading-line"></div></div>
+        <div class="document-grid five-docs">
+            <a href="/.netlify/functions/public-file?kind=document&type=permission"><i class="fa-solid fa-file-circle-check"></i><span>পাঠদানের অনুমতি</span><i class="fa-solid fa-angle-right"></i></a>
+            <a href="/.netlify/functions/public-file?kind=document&type=recognition"><i class="fa-solid fa-certificate"></i><span>একাডেমিক স্বীকৃতি</span><i class="fa-solid fa-angle-right"></i></a>
+            <a href="/.netlify/functions/public-file?kind=document&type=first_mpo"><i class="fa-solid fa-file-invoice-dollar"></i><span>প্রথম এমপিও</span><i class="fa-solid fa-angle-right"></i></a>
+<a href="/.netlify/functions/public-file?kind=document&type=branch_info"><i class="fa-solid fa-building"></i><span>শাখা তথ্য</span><i class="fa-solid fa-angle-right"></i></a>
+            <a href="/.netlify/functions/public-file?kind=document&type=other"><i class="fa-solid fa-folder-open"></i><span>অন্যান্য তথ্য</span><i class="fa-solid fa-angle-right"></i></a>
+        </div>
+    </section>
+
+    <section class="section-box" id="photo-gallery"><div class="section-heading"><span>আমাদের স্মৃতি</span><h2>ফটো গ্যালারি</h2><div class="heading-line"></div></div>
+        <div class="horizontal-scroll gallery-scroll" id="homeGallery"></div>
+    </section>
+</div>
+
+<aside class="sidebar">
+    <div class="side-widget speech-widget" id="headteacher-message"><div class="widget-title"><h3><i class="fa-solid fa-user-tie"></i> প্রধান শিক্ষকের বাণী</h3></div><div class="speech-card" id="homeHeadteacherCard">
+        <img src="Mamun.jpg" alt="প্রধান শিক্ষক"><h4>তথ্য লোড হচ্ছে...</h4><p>প্রধান শিক্ষক</p><blockquote>ওয়েব ম্যানেজমেন্টের তথ্য লোড হচ্ছে...</blockquote><a href="principal-message.html">বিস্তারিত <i class="fa-solid fa-arrow-right"></i></a>
+    </div></div>
+    <div class="side-widget speech-widget"><div class="widget-title"><h3><i class="fa-solid fa-user-group"></i> সভাপতির বাণী</h3></div><div class="speech-card" id="homePresidentCard">
+        <img src="Mamun.jpg" alt="সভাপতি"><h4>তথ্য লোড হচ্ছে...</h4><p>বিদ্যালয় ব্যবস্থাপনা কমিটি</p><blockquote>ওয়েব ম্যানেজমেন্টের তথ্য লোড হচ্ছে...</blockquote><a href="chairman-message.html">বিস্তারিত <i class="fa-solid fa-arrow-right"></i></a>
+    </div></div>
+
+    <div class="side-widget link-widget"><div class="widget-title"><h3><i class="fa-solid fa-link"></i> গুরুত্বপূর্ণ লিংক</h3></div><div class="quick-links">
+        <a href="https://apps.emis.gov.bd/" target="_blank"><i class="fa-solid fa-landmark"></i> EFT (স্কুল ও কলেজ) <i class="fa-solid fa-angle-right"></i></a>
+        <a href="https://sonali-e-sheba.dinajpurboard.gov.bd/" target="_blank"><i class="fa-solid fa-building-columns"></i> সোনালী সেবা - দিনাজপুর বোর্ড <i class="fa-solid fa-angle-right"></i></a>
+        <a href="https://dinajpurboard.gov.bd/" target="_blank"><i class="fa-solid fa-id-card"></i> শিক্ষার্থী নিবন্ধন - eSIF <i class="fa-solid fa-angle-right"></i></a>
+        <a href="https://pmeat.gov.bd/" target="_blank"><i class="fa-solid fa-hand-holding-heart"></i> শিক্ষা সহায়তা ট্রাস্ট <i class="fa-solid fa-angle-right"></i></a>
+        <a href="https://scholarship.dshe.gov.bd/" target="_blank"><i class="fa-solid fa-award"></i> বৃত্তি ও উপবৃত্তি <i class="fa-solid fa-angle-right"></i></a>
+        <a href="https://shed.gov.bd/" target="_blank"><i class="fa-solid fa-award"></i> মাধ্যমিক ও উচ্চ শিক্ষা বিভাগ <i class="fa-solid fa-angle-right"></i></a>
+        <a href="https://www.teachers.gov.bd/" target="_blank"><i class="fa-solid fa-chalkboard-user"></i> শিক্ষক বাতায়ন <i class="fa-solid fa-angle-right"></i></a>
+        <a href="https://konnect.edu.bd/" target="_blank "><i class="fa-solid fa-child"></i> কিশোর বাতায়ন <i class="fa-solid fa-angle-right"></i></a>
+    </div></div>
+
+    <div class="side-widget link-widget"><div class="widget-title"><h3><i class="fa-solid fa-user-graduate"></i> স্টুডেন্ট কর্ণার</h3></div><div class="quick-links">
+        <a href="#"><i class="fa-solid fa-right-to-bracket"></i> শিক্ষার্থী লগইন <i class="fa-solid fa-angle-right"></i></a>
+        <a href="#"><i class="fa-solid fa-user-check"></i> উপস্থিতি যাচাই <i class="fa-solid fa-angle-right"></i></a>
+        <a href="admit-card.html"><i class="fa-solid fa-ticket"></i> ভর্তি প্রবেশপত্র <i class="fa-solid fa-angle-right"></i></a>
+        <a href="#"><i class="fa-solid fa-square-poll-vertical"></i> ফলাফল অনুসন্ধান <i class="fa-solid fa-angle-right"></i></a>
+    </div></div>
+
+    <div class="side-widget contact-widget" id="contact"><div class="widget-title"><h3><i class="fa-solid fa-comments"></i> যোগাযোগ, অভিযোগ ও পরামর্শ</h3></div><div class="contact-box">
+        <a class="contact-action-row" data-school-link="phone" href="tel:01792838223"><i class="fa-solid fa-phone"></i><span>বিদ্যালয় অফিস<br><strong data-school="phone">01792838223</strong></span></a>
+        <a class="contact-action-row" data-school-link="email" href="mailto:ballovpurhighschool@gmail.com"><i class="fa-solid fa-envelope"></i><span>ই-মেইল<br><strong data-school="email">ballovpurhighschool@gmail.com</strong></span></a>
+        <a class="contact-action-row" data-school-link="facebook" href="#" target="_blank" rel="noopener"><i class="fa-brands fa-facebook"></i><span>ফেসবুক<br><strong>আমাদের Facebook পেজ</strong></span></a>
+        <a class="contact-button" data-school-link="email" href="mailto:ballovpurhighschool@gmail.com?subject=%E0%A6%85%E0%A6%AD%E0%A6%BF%E0%A6%AF%E0%A7%8B%E0%A6%97%20%2F%20%E0%A6%AA%E0%A6%B0%E0%A6%BE%E0%A6%AE%E0%A6%B0%E0%A7%8D%E0%A6%B6"><i class="fa-solid fa-paper-plane"></i> অভিযোগ / পরামর্শ পাঠান</a>
+    </div></div>
+
+    <div class="side-widget hotline-widget"><div class="widget-title"><h3><i class="fa-solid fa-phone-volume"></i> জরুরি হটলাইন</h3></div><div class="hotline-list">
+        <a href="tel:999"><span><i class="fa-solid fa-phone"></i> জাতীয় জরুরি সেবা</span><strong>৯৯৯</strong></a>
+        <a href="tel:333"><span><i class="fa-solid fa-headset"></i> তথ্য ও সরকারি সেবা</span><strong>৩৩৩</strong></a>
+        <a href="tel:1098"><span><i class="fa-solid fa-child-reaching"></i> শিশু সহায়তা</span><strong>১০৯৮</strong></a>
+        <a href="tel:109"><span><i class="fa-solid fa-hand-holding-heart"></i> নারী ও শিশু সহায়তা</span><strong>১০৯</strong></a>
+        <a href="tel:10921"><span><i class="fa-solid fa-person-dress"></i> নারী ও শিশু নির্যাতন</span><strong>১০৯২১</strong></a>
+        <a href="tel:16263"><span><i class="fa-solid fa-heart-pulse"></i> স্বাস্থ্য বাতায়ন</span><strong>১৬২৬৩</strong></a>
+        <a href="tel:16430"><span><i class="fa-solid fa-scale-balanced"></i> সরকারি আইনগত সহায়তা</span><strong>১৬৪৩০</strong></a>
+    </div></div>
+</aside>
+</div></main>
+
+<footer class="footer" id="site-footer">
+    <div class="footer-top">
+        <div class="footer-column footer-school">
+            <h3 data-school="nameBn">বল্লভপুর উচ্চ বিদ্যালয়</h3>
+            <p>স্থাপিত: <span data-school="established">১৯৯১</span> খ্রিস্টাব্দ</p>
+            <p data-school="shortAddress">উপজেলা: নাগেশ্বরী, জেলা: কুড়িগ্রাম</p>
+            <p>শিক্ষা, শৃঙ্খলা ও নৈতিকতার মাধ্যমে আলোকিত মানুষ গড়াই আমাদের লক্ষ্য।</p>
+        </div>
+
+        <div class="footer-column footer-nav-groups">
+            <h3>দ্রুত লিংক</h3>
+            <a class="footer-main-link" href="index.html">হোম</a>
+            <a class="footer-main-link" href="school-history.html">আমাদের সম্পর্কে</a>
+            <a class="footer-main-link" href="admission-form.html">ভর্তি</a>
+            <a class="footer-main-link" href="class-routine.html?class=6">রুটিন</a>
+            <a class="footer-main-link" href="all-notices.html">নোটিশ</a>
+        </div>
+
+        <div class="footer-column footer-important">
+            <h3>গুরুত্বপূর্ণ</h3>
+            <a href="student-info.html"><i class="fa-solid fa-user-graduate"></i> শিক্ষার্থী</a>
+            <a href="teacher-info.html"><i class="fa-solid fa-chalkboard-user"></i> শিক্ষক-কর্মচারী</a>
+            <a href="gallery.html"><i class="fa-regular fa-images"></i> গ্যালারি</a>
+            <a href="other-info.html"><i class="fa-regular fa-folder-open"></i> প্রাতিষ্ঠানিক নথি</a>
+            <a href="index.html#contact"><i class="fa-solid fa-address-book"></i> যোগাযোগ</a>
+        </div>
+
+        <div class="footer-column footer-contact">
+            <h3>যোগাযোগ</h3>
+            <p class="footer-address"><i class="fa-solid fa-location-dot"></i> <span data-school="shortAddress">নাগেশ্বরী, কুড়িগ্রাম</span></p>
+            <a class="footer-contact-link" data-school-link="phone" href="tel:01792838223">
+                <i class="fa-solid fa-phone"></i><span data-school="phone">01792838223</span>
+            </a>
+            <a class="footer-contact-link" data-school-link="email" href="mailto:ballovpurhighschool@gmail.com">
+                <i class="fa-solid fa-envelope"></i><span data-school="email">ballovpurhighschool@gmail.com</span>
+            </a>
+            <a class="footer-social facebook" data-school-link="facebook" href="#" target="_blank" rel="noopener">
+                <i class="fa-brands fa-facebook"></i> ফেসবুক
+            </a>
+            <a class="footer-social youtube" data-school-link="youtube" href="#" target="_blank" rel="noopener">
+                <i class="fa-brands fa-youtube"></i> ইউটিউব
+            </a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© ২০২৬ <span data-school="nameBn">বল্লভপুর উচ্চ বিদ্যালয়</span>। সর্বস্বত্ব সংরক্ষিত।</p>
+        <p class="bn">সার্বিক তত্বাবধানে: মোঃ আল-মামুন আলম আরজু</p>
+    </div>
+</footer>
+</div>
+<script src="school-info.js?v=global-name-1"></script>
+
+<script src="notices-direct-v5.js"></script>
+<script src="holiday-notices-public.js?v=1"></script>
+<script src="students.js?v=2"></script>
+
+<script id="dynamic-teacher-merit-sync">
+(function(){
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const img=v=>v?esc(v):'Mamun.jpg';
+
+  async function loadTeachers(){
+    const box=document.querySelector('.horizontal-scroll.person-scroll');
+    if(!box) return;
+    try{
+      const res=await fetch('/.netlify/functions/public-api?kind=staff&_='+Date.now(),{cache:'no-store'});
+      if(!res.ok) throw new Error('load');
+      const json=await res.json();
+      const rows=Array.isArray(json.data)?json.data:[];
+      if(!rows.length){
+        box.innerHTML='<div class="dynamic-empty"><i class="fa-solid fa-users-slash"></i><span>ওয়েব ম্যানেজমেন্টে কোনো শিক্ষক/কর্মচারী যোগ করা হয়নি।</span></div>';
+        return;
+      }
+      box.innerHTML=rows.map(t=>`<div class="person-card">
+        <div class="person-photo"><img src="${img(t.image)}" alt="${esc(t.name||'শিক্ষক/কর্মচারী')}" onerror="this.src='Mamun.jpg'"></div>
+        <div class="person-info"><h3>${esc(t.name||'')}</h3><p>${esc(t.designation||t.staff_type||'শিক্ষক/কর্মচারী')}</p>
+        <a href="teacher-details.html?id=${encodeURIComponent(t.id)}">বিস্তারিত</a></div>
+      </div>`).join('');
+    }catch(e){
+      box.innerHTML='<div class="dynamic-empty"><i class="fa-solid fa-triangle-exclamation"></i><span>শিক্ষক-কর্মচারীর তথ্য লোড করা যায়নি।</span></div>';
+    }
+  }
+
+  async function loadMerit(){
+    const box=document.querySelector('.horizontal-scroll.achiever-scroll');
+    if(!box) return;
+    try{
+      const res=await fetch('/.netlify/functions/public-api?kind=merit&_='+Date.now(),{cache:'no-store'});
+      if(!res.ok) throw new Error('load');
+      const json=await res.json();
+      const rows=Array.isArray(json.data)?json.data:[];
+      if(!rows.length){
+        box.innerHTML='<div class="dynamic-empty"><i class="fa-solid fa-award"></i><span>ওয়েব ম্যানেজমেন্টে কোনো কৃতি শিক্ষার্থী যোগ করা হয়নি।</span></div>';
+        return;
+      }
+      box.innerHTML=rows.map((s,i)=>`<article class="achiever-card" tabindex="0" aria-label="কৃতি শিক্ষার্থী ${i+1}">
+        <div class="achiever-photo"><img src="${img(s.image)}" alt="${esc(s.name||'কৃতি শিক্ষার্থী')}-এর ছবি" onerror="this.src='Mamun.jpg'"></div>
+        <div class="achiever-info">
+          <h3>${esc(s.name||'')}</h3>
+          <p>${esc([s.class_name,s.year_label].filter(Boolean).join(' • '))}</p>
+          ${s.achievement?`<strong>${esc(s.achievement)}</strong>`:''}
+          ${s.details?`<div class="achievement">${esc(s.details)}</div>`:''}
+        </div>
+      </article>`).join('');
+    }catch(e){
+      box.innerHTML='<div class="dynamic-empty"><i class="fa-solid fa-triangle-exclamation"></i><span>কৃতি শিক্ষার্থীর তথ্য লোড করা যায়নি।</span></div>';
+    }
+  }
+
+  loadTeachers();
+  loadMerit();
+})();
+</script>
+
+<script id="home-web-management-sync">
+(function(){
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const short=s=>{s=String(s||'').trim();return s.length>180?s.slice(0,180)+'…':s};
+
+ async function loadSlides(){
+  const slider=document.getElementById('slider'), dots=slider?.querySelector('.slider-dots');
+  if(!slider||!dots)return;
+  try{
+   const r=await fetch('/.netlify/functions/public-api?kind=slides&_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;
+   const j=await r.json(),rows=Array.isArray(j.data)?j.data:[];
+   slider.querySelectorAll('.slide').forEach(x=>x.remove());
+   const prev=document.getElementById('prevSlide');
+   if(!rows.length){
+    const d=document.createElement('div');d.className='slide active';d.innerHTML='<div class="slide-caption"><span>স্লাইডার</span><h2>কোনো ছবি যোগ করা হয়নি</h2><p>ওয়েব ম্যানেজমেন্ট থেকে স্লাইডার ছবি যোগ করুন।</p></div>';slider.insertBefore(d,prev);dots.innerHTML='';
+   }else{
+    rows.forEach((s,i)=>{
+      const d=document.createElement('div');d.className='slide'+(i===0?' active':'');
+      d.innerHTML=`<img src="${esc(s.image)}" alt="${esc(s.title||'বিদ্যালয়ের স্লাইড')}" onerror="this.style.display='none'"><div class="slide-caption">${s.badge?`<span>${esc(s.badge)}</span>`:''}<h2>${esc(s.title||'')}</h2><p>${esc(s.description||'')}</p></div>`;
+      slider.insertBefore(d,prev);
+    });
+    dots.innerHTML=rows.map((_,i)=>`<button class="dot${i===0?' active':''}" type="button" aria-label="স্লাইড ${i+1}"></button>`).join('');
+   }
+   window.dispatchEvent(new Event('slidesUpdated'));
+  }catch(e){}
+ }
+
+ async function loadGallery(){
+  const box=document.getElementById('homeGallery');if(!box)return;
+  try{
+   const r=await fetch('/.netlify/functions/public-api?kind=gallery&_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;
+   const j=await r.json(),rows=Array.isArray(j.data)?j.data:[];
+   if(!rows.length){box.innerHTML='<div class="dynamic-empty"><i class="fa-regular fa-images"></i><span>ওয়েব ম্যানেজমেন্টে কোনো গ্যালারি ছবি যোগ করা হয়নি।</span></div>';return}
+   box.innerHTML=rows.map(g=>`<a href="${esc(g.image)}" class="gallery-item home-gallery-item" target="_blank" rel="noopener"><img src="${esc(g.image)}" alt="${esc(g.title||'গ্যালারির ছবি')}" onerror="this.src='Mamun.jpg'"><span><i class="fa-solid fa-expand"></i></span></a>`).join('');
+  }catch(e){box.innerHTML='<div class="dynamic-empty">গ্যালারির তথ্য লোড করা যায়নি।</div>'}
+ }
+
+ async function loadLeadership(){
+  try{
+   const r=await fetch('/.netlify/functions/public-api?kind=leadership&_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;
+   const j=await r.json();
+   const h=j.headteacher||{},p=j.president||{},s=j.secretary||{};
+   const hc=document.getElementById('homeHeadteacherCard');
+   if(hc){
+    hc.querySelector('img').src=h.image||'Mamun.jpg';hc.querySelector('img').onerror=()=>hc.querySelector('img').src='Mamun.jpg';
+    hc.querySelector('h4').textContent=h.name||'প্রধান শিক্ষকের তথ্য যোগ করা হয়নি';
+    hc.querySelector('p').textContent=h.designation||'প্রধান শিক্ষক';
+    hc.querySelector('blockquote').textContent=h.details?('“'+short(h.details)+'”'):'ওয়েব ম্যানেজমেন্টে প্রধান শিক্ষকের বাণী যোগ করা হয়নি।';
+   }
+   const pc=document.getElementById('homePresidentCard');
+   if(pc){
+    pc.querySelector('img').src=p.image||'Mamun.jpg';pc.querySelector('img').onerror=()=>pc.querySelector('img').src='Mamun.jpg';
+    pc.querySelector('h4').textContent=p.name||'সভাপতির তথ্য যোগ করা হয়নি';
+    pc.querySelector('p').textContent=p.designation||'বিদ্যালয় ব্যবস্থাপনা কমিটি';
+    pc.querySelector('blockquote').textContent=p.details?('“'+short(p.details)+'”'):'ওয়েব ম্যানেজমেন্টে সভাপতির বাণী যোগ করা হয়নি।';
+   }
+   const sn=document.getElementById('committeeSecretaryName');
+   if(sn)sn.textContent=s.name||h.name||'প্রধান শিক্ষক';
+  }catch(e){}
+ }
+
+ loadSlides();loadGallery();loadLeadership();
+})();
+</script>
+
+<script src="script.js?v=student-db-2"></script>
+</body>
+</html>

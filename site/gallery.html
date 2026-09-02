@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>বিদ্যালয়ের ফটো গ্যালারি | বল্লভপুর উচ্চ বিদ্যালয়</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0}body{background:#eef5f2;font-family:Kalpurush,"Times New Roman",serif;color:#173a48;padding:0 18px 35px}.page{max-width:1232px;margin:4px auto 0;background:#fff;min-height:94vh;box-shadow:0 2px 18px rgba(0,0,0,.08)}
+.hero{position:relative;background:linear-gradient(120deg,#0b5a43,#217b68);color:#fff;padding:26px 28px 30px;min-height:150px;overflow:hidden}.hero:after{content:"";position:absolute;width:170px;height:170px;border-radius:50%;right:-40px;top:-75px;background:rgba(255,255,255,.06)}.eyebrow{font-size:15px;margin-bottom:3px}.hero h1{font-size:36px;line-height:1.1;margin:4px 0 7px;font-weight:500}.hero p{font-size:17px;margin:0}.home-btn{position:absolute;right:28px;top:22px;z-index:5;pointer-events:auto;text-decoration:none;color:#fff;border:1px solid rgba(255,255,255,.38);border-radius:22px;padding:10px 18px;background:rgba(255,255,255,.08);font-size:15px}.counter{position:absolute;right:28px;bottom:22px;border:1px solid rgba(255,255,255,.35);padding:7px 13px;border-radius:20px;font-size:15px}
+.content{padding:26px 24px 50px}.title-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;border-bottom:1px solid #dce8e4;padding-bottom:13px}.title-row h2{font-weight:500;font-size:24px;margin:0}.gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.card{border-radius:14px;overflow:hidden;background:#fff;border:1px solid #d7e5e0;box-shadow:0 5px 18px rgba(16,80,63,.08);cursor:pointer;transition:.2s}.card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(16,80,63,.14)}.photo{height:240px;background:#e8f1ee;position:relative;overflow:hidden}.photo img{width:100%;height:100%;object-fit:cover;display:block;transition:.35s}.card:hover .photo img{transform:scale(1.04)}.zoom{position:absolute;inset:0;background:rgba(3,82,60,.1);display:flex;align-items:center;justify-content:center;opacity:0;transition:.25s}.card:hover .zoom{opacity:1}.zoom i{width:45px;height:45px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.92);color:#08755b}.info{padding:14px 16px 16px}.info h3{font-size:19px;font-weight:500;margin:0 0 5px}.info p{font-size:15px;color:#61766f;margin:0}.empty{padding:70px 20px;text-align:center;color:#6a7f78;border:1px dashed #bed2cb;border-radius:12px}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.86);z-index:9999;display:none;align-items:center;justify-content:center;padding:30px}.lightbox.open{display:flex}.lightbox img{max-width:92vw;max-height:86vh;border-radius:8px;box-shadow:0 10px 40px #000}.close{position:absolute;top:18px;right:25px;border:0;background:#fff;color:#123;width:42px;height:42px;border-radius:50%;font-size:21px;cursor:pointer}
+@media(max-width:900px){.gallery-grid{grid-template-columns:repeat(2,1fr)}.photo{height:210px}}@media(max-width:600px){body{padding:0}.page{margin:0}.hero{padding:72px 18px 62px}.hero h1{font-size:29px}.home-btn{left:auto;right:18px;top:18px;bottom:auto}.counter{right:18px;top:auto;bottom:18px}.content{padding:20px 14px}.gallery-grid{grid-template-columns:1fr}.photo{height:230px}}
+
+/* GLOBAL_REQUIRED_STAR_INLINE */
+label em, label .required, label .required-star, .form-label em, .form-label .required, .form-label .required-star {
+  display:inline !important;
+  position:static !important;
+  float:none !important;
+  margin:0 0 0 3px !important;
+  padding:0 !important;
+  vertical-align:baseline !important;
+  white-space:nowrap !important;
+  color:#dc2626;
+  font-style:normal;
+}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="hero">
+  <div class="eyebrow"><i class="fa-regular fa-image"></i> স্মৃতির ফ্রেমে আমাদের বিদ্যালয়</div>
+  <h1>বিদ্যালয়ের ফটো গ্যালারি</h1>
+  <p>শিক্ষা, সংস্কৃতি, আয়োজন ও আনন্দঘন মুহূর্তের নির্বাচিত ছবিসমূহ</p>
+  <div class="counter" id="photoCount">মোট ০টি ছবি</div>
+  <a class="home-btn" href="./index.html" onclick="window.location.href='./index.html'; return false;"><i class="fa-solid fa-house"></i> হোমপেজ</a>
+</header>
+<main class="content">
+  <div class="title-row"><h2>ফটো গ্যালারি</h2><span><i class="fa-solid fa-images"></i></span></div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</main>
+</div>
+<div class="lightbox" id="lightbox"><button class="close" id="closeLightbox" aria-label="বন্ধ করুন"><i class="fa-solid fa-xmark"></i></button><img id="lightboxImg" alt="গ্যালারির ছবি"></div>
+
+<script>
+let galleryData=[];
+const grid=document.getElementById('galleryGrid'), box=document.getElementById('lightbox'), img=document.getElementById('lightboxImg');
+const bn=n=>String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+(async function(){
+ try{
+  const r=await fetch('/.netlify/functions/public-api?kind=gallery&_='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;
+  const j=await r.json();galleryData=Array.isArray(j.data)?j.data:[];
+  document.getElementById('photoCount').textContent=`মোট ${bn(galleryData.length)}টি ছবি`;
+  if(!galleryData.length){grid.innerHTML='<div class="empty">ওয়েব ম্যানেজমেন্টে এখনও কোনো গ্যালারি ছবি যোগ করা হয়নি।</div>';return}
+  grid.innerHTML=galleryData.map((g,i)=>`<article class="card" data-index="${i}"><div class="photo"><img src="${esc(g.image)}" alt="${esc(g.title||'গ্যালারির ছবি')}" onerror="this.src='Mamun.jpg'"><div class="zoom"><i class="fa-solid fa-expand"></i></div></div><div class="info"><h3>${esc(g.title||('ছবি '+bn(i+1)))}</h3><p>গ্যালারি ছবি ${bn(i+1)}</p></div></article>`).join('');
+ }catch(e){grid.innerHTML='<div class="empty">গ্যালারির তথ্য লোড করা যায়নি।</div>'}
+})();
+grid.addEventListener('click',e=>{const c=e.target.closest('.card');if(!c)return;const g=galleryData[+c.dataset.index];if(!g)return;img.src=g.image;img.alt=g.title||'গ্যালারির ছবি';box.classList.add('open')});
+document.getElementById('closeLightbox').onclick=()=>box.classList.remove('open');
+box.addEventListener('click',e=>{if(e.target===box)box.classList.remove('open')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')box.classList.remove('open')});
+</script>
+<script src="school-info.js?v=global-name-1"></script>
+</body>
+</html>

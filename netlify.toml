@@ -1,0 +1,96 @@
+[build]
+  publish = "site"
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/admin/login.php"
+  to = "/admin/"
+  status = 302
+
+[[redirects]]
+  from = "/api/school-info.php"
+  to = "/.netlify/functions/public-api?kind=school"
+  status = 200
+
+[[redirects]]
+  from = "/leadership-api.php"
+  to = "/.netlify/functions/public-api?kind=leadership"
+  status = 200
+
+[[redirects]]
+  from = "/gallery-api.php"
+  to = "/.netlify/functions/public-api?kind=gallery"
+  status = 200
+
+[[redirects]]
+  from = "/history-api.php"
+  to = "/.netlify/functions/public-api?kind=history"
+  status = 200
+
+[[redirects]]
+  from = "/slides-api.php"
+  to = "/.netlify/functions/public-api?kind=slides"
+  status = 200
+
+[[redirects]]
+  from = "/staff-api.php"
+  to = "/.netlify/functions/public-api?kind=staff"
+  status = 200
+
+[[redirects]]
+  from = "/merit-students-api.php"
+  to = "/.netlify/functions/public-api?kind=merit"
+  status = 200
+
+[[redirects]]
+  from = "/routine-api.php"
+  to = "/.netlify/functions/public-api?kind=routine"
+  status = 200
+
+[[redirects]]
+  from = "/committee-api.php"
+  to = "/.netlify/functions/public-api?kind=committee"
+  status = 200
+
+[[redirects]]
+  from = "/notices-api.php"
+  to = "/.netlify/functions/public-api?kind=notices"
+  status = 200
+
+[[redirects]]
+  from = "/holiday-notices-api.php"
+  to = "/.netlify/functions/public-api?kind=holidays"
+  status = 200
+
+[[redirects]]
+  from = "/documents-status-api.php"
+  to = "/.netlify/functions/public-api?kind=documents-status"
+  status = 200
+
+[[redirects]]
+  from = "/student-stats-api.php"
+  to = "/.netlify/functions/public-api?kind=students"
+  status = 200
+
+[[redirects]]
+  from = "/notice-file.php"
+  to = "/.netlify/functions/public-file?kind=notice"
+  status = 200
+
+[[redirects]]
+  from = "/holiday-file.php"
+  to = "/.netlify/functions/public-file?kind=holiday"
+  status = 200
+
+[[redirects]]
+  from = "/document-file.php"
+  to = "/.netlify/functions/public-file?kind=document"
+  status = 200
+
+[[redirects]]
+  from = "/media/*"
+  to = "/.netlify/functions/media?key=:splat"
+  status = 200

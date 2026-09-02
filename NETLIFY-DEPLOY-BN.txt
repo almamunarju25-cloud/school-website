@@ -1,0 +1,58 @@
+বলভপুর/বিদ্যালয় ওয়েবসাইট — Netlify Native Version
+=================================================
+
+এই ভার্সনে PHP/MySQL ব্যবহার করা হয়নি।
+Web Management + Public Website এখন Netlify Functions + Netlify Blobs ব্যবহার করে।
+
+DEPLOY করার সহজ নিয়ম
+---------------------
+পদ্ধতি ১ (সবচেয়ে সহজ):
+1. এই ZIP Extract করুন।
+2. Netlify-তে Login করুন।
+3. Add new project / Deploy manually থেকে Extract করা `ballovpur_integrated` project folder দিন।
+   Logged-in অবস্থায় project folder দিলে Netlify build করে Functions deploy করতে পারে।
+4. Deploy শেষ হলে:
+   Project configuration -> Environment variables
+   নতুন variable দিন:
+     Key: ADMIN_PASSWORD
+     Value: আপনার নিজের শক্ত password
+5. Environment variable যোগ করার পর নতুন Deploy/Trigger deploy দিন।
+6. Website খুলে Menu -> ওয়েব ম্যানেজমেন্ট ক্লিক করুন।
+7. ADMIN_PASSWORD দিয়ে Login করুন।
+8. Web Management থেকে তথ্য Save করলে Netlify Blobs-এ persist হবে এবং Public Website-এ দেখা যাবে।
+
+GitHub দিয়ে Deploy করলে:
+- এই folder GitHub repository-তে push করুন।
+- Netlify -> Import existing project -> GitHub repository নির্বাচন করুন।
+- netlify.toml নিজে publish/functions settings নেবে।
+- Environment variable ADMIN_PASSWORD সেট করে deploy করুন।
+
+গুরুত্বপূর্ণ:
+- Admin password কখনও HTML/JS ফাইলে লিখবেন না।
+- ADMIN_PASSWORD শুধু Netlify Environment variables-এ রাখবেন।
+- Upload limit এই project-এ 5.5 MB রাখা হয়েছে (Netlify Function request limit-এর মধ্যে)।
+- Web Management-এ আপলোড করা ছবি/PDF Netlify Blobs-এ সংরক্ষিত হবে।
+- নতুন code deploy হলেও site-wide Blob data থাকবে।
+- প্রথম deploy-এ তালিকাগুলো খালি থাকবে; Web Management থেকে যা যোগ করবেন ঠিক সেটাই Public Website-এ দেখাবে।
+
+ম্যানেজমেন্টে যা যা আছে
+------------------------
+বিদ্যালয়ের তথ্য ও দুই Logo
+Slider
+Notice + PDF/Image
+Holiday Notice + PDF/Image
+Headteacher
+Teacher/Staff + Biodata
+Committee (President, Secretary, Guardian Member, Member)
+Student Statistics
+Merit Students
+Routine + Branch/Division setup
+School History
+Gallery
+Institutional Documents
+
+Technical:
+- Static site publish directory: site/
+- Functions: netlify/functions/
+- Storage: Netlify Blobs
+- Admin: /admin/

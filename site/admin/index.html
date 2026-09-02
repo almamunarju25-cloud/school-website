@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Web Management | School</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:"Noto Sans Bengali","Kalpurush",Arial,sans-serif;background:#f3f6f8;color:#274358}
+button,input,select,textarea{font:inherit}.hidden{display:none!important}
+.login{min-height:100vh;display:grid;place-items:center;background:linear-gradient(135deg,#087a66,#2f8ea2)}
+.login-card{width:min(430px,92%);background:#fff;border-radius:18px;padding:30px;box-shadow:0 20px 60px #0003}.login-card h1{margin:0 0 7px;font-size:25px}.login-card p{font-size:12px;color:#71818d;line-height:1.7}.login-card input{width:100%;height:44px;border:1px solid #d6dee5;border-radius:9px;padding:0 12px;margin:10px 0}.btn{border:0;border-radius:8px;background:#087d73;color:#fff;padding:10px 16px;cursor:pointer}.btn.red{background:#d34c59}.btn.gray{background:#64748b}.btn.small{padding:6px 9px;font-size:11px}.login-card .btn{width:100%;height:44px}
+.app{min-height:100vh;display:grid;grid-template-columns:245px 1fr}.side{background:#153b55;color:#fff;padding:18px 13px;position:sticky;top:0;height:100vh;overflow:auto}.brand{padding:10px 10px 20px;border-bottom:1px solid #ffffff20}.brand b{font-size:17px}.brand small{display:block;color:#b9c9d4;margin-top:5px}.nav{display:grid;gap:5px;margin-top:14px}.nav button{border:0;background:transparent;color:#dbe8ee;text-align:left;border-radius:8px;padding:10px 11px;cursor:pointer}.nav button:hover,.nav button.active{background:#ffffff16;color:#fff}.nav i{width:23px}.main{padding:20px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.topbar h1{font-size:24px;margin:0}.topbar a{color:#087d73;text-decoration:none}.panel{background:#fff;border:1px solid #e0e7ed;border-radius:12px;box-shadow:0 4px 14px #1e3b5109;margin-bottom:17px;overflow:hidden}.panel-head{padding:14px 16px;border-bottom:1px solid #e8edf1;display:flex;align-items:center;justify-content:space-between}.panel-head h2{font-size:16px;margin:0}.panel-body{padding:16px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.field{display:grid;gap:6px;font-size:12px}.field.full{grid-column:1/-1}.field input,.field select,.field textarea{width:100%;border:1px solid #d4dde5;border-radius:8px;padding:9px 10px;background:#fff}.field input,.field select{height:40px}.field textarea{min-height:90px;resize:vertical}.actions{display:flex;gap:8px;justify-content:flex-end;margin-top:14px}.table-wrap{overflow:auto}.table{width:100%;border-collapse:collapse;min-width:720px;font-size:11px}.table th{background:#f5f8fa;text-align:left;padding:10px;border-bottom:1px solid #e0e7ed}.table td{padding:9px 10px;border-bottom:1px solid #edf1f4;vertical-align:top}.thumb{width:42px;height:42px;object-fit:cover;border-radius:7px;background:#eef2f4}.note{padding:10px 12px;border-radius:8px;background:#fff8e9;border:1px solid #efdcae;font-size:11px;color:#765b2d;margin-bottom:12px}.success{background:#eaf8f2;border-color:#cbe9dc;color:#24765e}.error{background:#fff0f1;border-color:#f0c7cb;color:#b34f59}.section{display:none}.section.active{display:block}.file-row{display:flex;align-items:center;gap:8px}.file-preview{max-width:100px;max-height:70px;object-fit:contain}.routine-periods{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.routine-periods input{width:100%;height:38px;border:1px solid #d4dde5;border-radius:8px;padding:8px}.stats-table input{width:74px;height:34px;border:1px solid #d4dde5;border-radius:6px;padding:6px}
+@media(max-width:900px){.app{grid-template-columns:1fr}.side{position:static;height:auto}.nav{grid-template-columns:repeat(3,1fr)}.main{padding:12px}.grid,.grid.three{grid-template-columns:1fr}.routine-periods{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.nav{grid-template-columns:1fr 1fr}.routine-periods{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="loginView" class="login">
+  <form id="loginForm" class="login-card">
+    <h1>Web Management</h1>
+    <p>Netlify-তে Admin চালু করতে প্রথমে Netlify → Project configuration → Environment variables-এ <b>ADMIN_PASSWORD</b> সেট করুন। তারপর সেই password দিয়ে login করুন।</p>
+    <div id="loginMsg"></div>
+    <input id="password" type="password" placeholder="Admin password" required>
+    <button class="btn">লগইন করুন</button>
+  </form>
+</div>
+
+<div id="appView" class="app hidden">
+  <aside class="side">
+    <div class="brand"><b>বিদ্যালয় Web Management</b><small>Netlify Blobs powered</small></div>
+    <div class="nav" id="nav">
+      <button data-sec="school"><i class="fa-solid fa-school"></i> বিদ্যালয়ের তথ্য</button>
+      <button data-sec="slides"><i class="fa-regular fa-images"></i> স্লাইডার</button>
+      <button data-sec="notices"><i class="fa-regular fa-bell"></i> নোটিশ</button>
+      <button data-sec="holidays"><i class="fa-regular fa-calendar"></i> ছুটির নোটিশ</button>
+      <button data-sec="headteacher"><i class="fa-solid fa-user-tie"></i> প্রধান শিক্ষক</button>
+      <button data-sec="staff"><i class="fa-solid fa-chalkboard-user"></i> শিক্ষক-কর্মচারী</button>
+      <button data-sec="committee"><i class="fa-solid fa-users"></i> কমিটি</button>
+      <button data-sec="students"><i class="fa-solid fa-user-graduate"></i> শিক্ষার্থী পরিসংখ্যান</button>
+      <button data-sec="merit"><i class="fa-solid fa-award"></i> কৃতি শিক্ষার্থী</button>
+      <button data-sec="routine"><i class="fa-solid fa-calendar-days"></i> রুটিন</button>
+      <button data-sec="history"><i class="fa-solid fa-landmark"></i> বিদ্যালয়ের ইতিহাস</button>
+      <button data-sec="gallery"><i class="fa-regular fa-image"></i> গ্যালারি</button>
+      <button data-sec="documents"><i class="fa-regular fa-folder-open"></i> প্রাতিষ্ঠানিক নথি</button>
+    </div>
+  </aside>
+  <main class="main">
+    <div class="topbar"><div><h1 id="pageTitle">Web Management</h1><small id="saveState"></small></div><div><a href="/" target="_blank">ওয়েবসাইট দেখুন</a> · <button class="btn gray small" id="logoutBtn">Logout</button></div></div>
+    <div id="content"></div>
+  </main>
+</div>
+
+<script>
+const API='/.netlify/functions/admin-api',AUTH='/.netlify/functions/auth',UPLOAD='/.netlify/functions/upload';
+let DATA=null, current='school';
+const $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fieldsToObj=form=>Object.fromEntries(new FormData(form).entries());
+const bool=v=>v==='1'||v===1||v===true;
+function msg(text,type='success'){ $('#saveState').textContent=text; setTimeout(()=>$('#saveState').textContent='',2500); }
+async function authMe(){const r=await fetch(AUTH+'?action=me',{cache:'no-store'});return r.json()}
+async function api(body){const r=await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});if(r.status===401){location.reload();throw 0}const j=await r.json();if(!r.ok)throw new Error(j.error||'Save failed');DATA=j.data||DATA;return j}
+async function reload(){const r=await fetch(API,{cache:'no-store'});if(!r.ok)throw 0;DATA=await r.json();render()}
+async function uploadFile(file){if(!file)return null;const fd=new FormData();fd.append('file',file);const r=await fetch(UPLOAD,{method:'POST',body:fd});const j=await r.json();if(!r.ok)throw new Error(j.error||'Upload failed');return {key:j.key,url:j.url,name:file.name,type:file.type}}
+function fileCell(v){return v?.url?`<img class="thumb" src="${esc(v.url)}">`:''}
+function nav(sec){current=sec;document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('active',b.dataset.sec===sec));render()}
+document.getElementById('nav').onclick=e=>{const b=e.target.closest('button[data-sec]');if(b)nav(b.dataset.sec)}
+document.getElementById('logoutBtn').onclick=async()=>{await fetch(AUTH+'?action=logout');location.reload()}
+
+const schema={
+ slides:{title:'স্লাইডার',fields:[['badge','ছোট শিরোনাম'],['title','শিরোনাম'],['description','বিবরণ','textarea'],['sort_order','ক্রম','number'],['image','ছবি','file']]},
+ notices:{title:'নোটিশ',fields:[['title','নোটিশ শিরোনাম'],['publish_date','প্রকাশের তারিখ','date'],['body','বিস্তারিত','textarea'],['file','PDF/ছবি','file']]},
+ holidays:{title:'ছুটির নোটিশ',fields:[['title','শিরোনাম'],['description','বিবরণ','textarea'],['start_date','শুরুর তারিখ','date'],['end_date','শেষ তারিখ','date'],['file','PDF/ছবি','file']]},
+ gallery:{title:'গ্যালারি',fields:[['title','ছবির শিরোনাম'],['sort_order','ক্রম','number'],['image','ছবি','file']]},
+ history:{title:'বিদ্যালয়ের ইতিহাস',fields:[['history_text','ইতিহাস','textarea'],['sort_order','ক্রম','number']]},
+ merit:{title:'কৃতি শিক্ষার্থী',fields:[['name','শিক্ষার্থীর নাম'],['class_name','শ্রেণি'],['year_label','বছর'],['achievement','অর্জন'],['details','বিস্তারিত','textarea'],['image','ছবি','file']]},
+ committee:{title:'কমিটি',fields:[['member_type','ধরন','select','সভাপতি|সদস্য সচিব|অভিভাবক সদস্য|সদস্য'],['name','নাম'],['designation','পদবি'],['phone','মোবাইল'],['details','বিস্তারিত','textarea'],['sort_order','ক্রম','number'],['image','ছবি','file']]},
+ documents:{title:'প্রাতিষ্ঠানিক নথি',fields:[['doc_type','বিভাগ','select','permission|recognition|first_mpo|branch_info|other'],['title','ফাইলের শিরোনাম'],['file','PDF/ছবি','file']]},
+ staff:{title:'শিক্ষক-কর্মচারী',fields:[['staff_type','ধরন','select','শিক্ষক|কর্মচারী'],['name','নাম (বাংলা)'],['name_en','নাম (ইংরেজি)'],['designation','পদবি'],['subject','বিষয়'],['phone','মোবাইল'],['email','ইমেইল'],['joining_date','যোগদানের তারিখ','date'],['qualification','শিক্ষাগত যোগ্যতা','textarea'],['details','বিস্তারিত / দায়িত্ব','textarea'],['gender','লিঙ্গ'],['religion','ধর্ম'],['blood_group','রক্তের গ্রুপ'],['marital_status','বৈবাহিক অবস্থা'],['date_of_birth','জন্ম তারিখ','date'],['district','জেলা'],['upazila','উপজেলা'],['address','ঠিকানা','textarea'],['nid','NID'],['employee_id','Employee ID'],['index_no','Index No'],['experience_years','অভিজ্ঞতা (বছর)','number'],['image','ছবি','file']]}
+};
+function inputField(f,val=''){
+ const [name,label,type='text',opts='']=f;
+ if(type==='textarea')return `<label class="field full">${label}<textarea name="${name}">${esc(val||'')}</textarea></label>`;
+ if(type==='select')return `<label class="field">${label}<select name="${name}">${opts.split('|').map(x=>`<option ${String(val)===x?'selected':''}>${esc(x)}</option>`).join('')}</select></label>`;
+ if(type==='file')return `<label class="field">${label}<input type="file" name="${name}" accept="image/*,.pdf"><div class="file-row">${val?.url?`<img class="file-preview" src="${esc(val.url)}"><small>${esc(val.name||'')}</small>`:''}</div></label>`;
+ return `<label class="field">${label}<input name="${name}" type="${type}" value="${esc(val||'')}"></label>`;
+}
+function crudSection(key){
+ const s=schema[key],rows=DATA[key]||[];
+ return `<section class="panel"><div class="panel-head"><h2>${s.title} যোগ / আপডেট</h2></div><div class="panel-body">
+  <form id="crudForm" data-key="${key}"><input type="hidden" name="id"><div class="grid">${s.fields.map(f=>inputField(f)).join('')}</div>
+  <div class="actions"><button type="button" class="btn gray" onclick="resetCrud('${key}')">নতুন</button><button class="btn">সংরক্ষণ করুন</button></div></form></div></section>
+  <section class="panel"><div class="panel-head"><h2>সংরক্ষিত তথ্য (${rows.length})</h2></div><div class="table-wrap"><table class="table"><thead><tr><th>ছবি/ফাইল</th><th>নাম/শিরোনাম</th><th>ধরন/পদবি</th><th>অ্যাকশন</th></tr></thead><tbody>
+  ${rows.map(x=>`<tr><td>${fileCell(x.image||x.file)}</td><td>${esc(x.name||x.title||x.history_text||'').slice(0,100)}</td><td>${esc(x.designation||x.member_type||x.doc_type||x.class_name||x.publish_date||'')}</td><td><button class="btn small" onclick="editCrud('${key}','${esc(x.id)}')">Edit</button> <button class="btn red small" onclick="delCrud('${key}','${esc(x.id)}')">Delete</button></td></tr>`).join('')}
+  </tbody></table></div></section>`;
+}
+window.resetCrud=key=>{document.getElementById('crudForm').reset();document.querySelector('#crudForm [name=id]').value=''}
+window.editCrud=(key,id)=>{
+ const x=(DATA[key]||[]).find(r=>String(r.id)===String(id));if(!x)return;const form=document.getElementById('crudForm');
+ form.querySelector('[name=id]').value=x.id;
+ schema[key].fields.forEach(f=>{const el=form.elements[f[0]];if(!el||f[2]==='file')return;el.value=x[f[0]]??''});
+ form.scrollIntoView({behavior:'smooth'});
+}
+window.delCrud=async(key,id)=>{if(!confirm('ডিলেট করবেন?'))return;await api({action:'delete',collection:key,id});msg('ডিলেট হয়েছে');render()}
+
+function schoolSection(){
+ const s=DATA.school||{};
+ return `<section class="panel"><div class="panel-head"><h2>বিদ্যালয়ের তথ্য</h2></div><div class="panel-body"><div class="note">এখানে বিদ্যালয়ের নাম পরিবর্তন করলে Public Website-এর সব জায়গায় একই নাম দেখাবে।</div>
+ <form id="schoolForm"><div class="grid">
+ ${[['nameBn','বিদ্যালয়ের নাম (বাংলা)'],['nameEn','School Name (English)'],['address','পূর্ণ ঠিকানা'],['shortAddress','সংক্ষিপ্ত ঠিকানা'],['phone','মোবাইল'],['email','ইমেইল'],['established','স্থাপিত'],['facebook','Facebook URL'],['youtube','YouTube URL']].map(x=>inputField([x[0],x[1]],s[x[0]])).join('')}
+ ${inputField(['schoolLogo','বিদ্যালয়ের লোগো','file'],s.schoolLogoObj||null)}
+ ${inputField(['boardLogo','বোর্ড লোগো','file'],s.boardLogoObj||null)}
+ </div><div class="actions"><button class="btn">সব তথ্য আপডেট করুন</button></div></form></div></section>`;
+}
+function headteacherSection(){
+ const x=DATA.headteacher||{};
+ const fields=schema.staff.fields.filter(f=>!['staff_type'].includes(f[0]));
+ return `<section class="panel"><div class="panel-head"><h2>প্রধান শিক্ষকের তথ্য ও বাণী</h2></div><div class="panel-body"><form id="headForm"><div class="grid">${fields.map(f=>inputField(f,x[f[0]]||(f[0]==='image'?x.image:null))).join('')}</div><div class="actions"><button class="btn">আপডেট করুন</button></div></form></div></section>`;
+}
+function studentsSection(){
+ const classes=['ষষ্ঠ','সপ্তম','অষ্টম','নবম','দশম'],map=Object.fromEntries((DATA.students||[]).map(x=>[x.className,x]));
+ return `<section class="panel"><div class="panel-head"><h2>শিক্ষার্থী পরিসংখ্যান</h2></div><div class="panel-body table-wrap"><form id="studentsForm"><table class="table stats-table"><thead><tr><th>শ্রেণি</th><th>মোট</th><th>ছাত্র</th><th>ছাত্রী</th><th>মুসলিম</th><th>হিন্দু</th><th>খ্রিস্টান</th><th>বৌদ্ধ</th><th>অন্যান্য</th></tr></thead><tbody>${classes.map(c=>{const x=map[c]||{};return `<tr data-class="${c}"><td>${c}</td>${['total','male','female','muslim','hindu','christian','buddhist','other'].map(k=>`<td><input name="${k}" type="number" min="0" value="${Number(x[k]||0)}"></td>`).join('')}</tr>`}).join('')}</tbody></table><div class="actions"><button class="btn">সব তথ্য আপডেট করুন</button></div></form></div></section>`;
+}
+function routineSection(){
+ const g=DATA.classGroups||{},rows=DATA.routines||[];
+ return `<section class="panel"><div class="panel-head"><h2>শাখা / বিভাগ সেটআপ</h2></div><div class="panel-body"><div class="note">৬ষ্ঠ–৮ম: শাখা। ৯ম–১০ম: বিভাগ। কমা দিয়ে একাধিক দিন।</div><form id="groupsForm"><div class="grid">
+ ${['ষষ্ঠ','সপ্তম','অষ্টম','নবম','দশম'].map(c=>inputField([c,`${c} — ${['নবম','দশম'].includes(c)?'বিভাগ':'শাখা'}`],(g[c]||[]).join(', '))).join('')}
+ </div><div class="actions"><button class="btn">শাখা/বিভাগ আপডেট করুন</button></div></form></div></section>
+ <section class="panel"><div class="panel-head"><h2>রুটিন আপডেট</h2></div><div class="panel-body"><form id="routineForm"><input type="hidden" name="id"><div class="grid three">
+ <label class="field">শ্রেণি<select name="class_name">${['ষষ্ঠ','সপ্তম','অষ্টম','নবম','দশম'].map(c=>`<option>${c}</option>`).join('')}</select></label>
+ <label class="field">শাখা/বিভাগ<select name="group" id="routineGroup"></select></label>
+ <label class="field">বার<select name="day_name">${['রবিবার','সোমবার','মঙ্গলবার','বুধবার','বৃহস্পতিবার','শুক্রবার','শনিবার'].map(d=>`<option>${d}</option>`).join('')}</select></label>
+ </div><div class="routine-periods">${Array.from({length:8},(_,i)=>`<label class="field">${i+1}ম ঘণ্টা<input name="p${i}" placeholder="বিষয়"></label>`).join('')}</div>
+ <div class="actions"><button type="button" class="btn gray" onclick="resetRoutine()">নতুন</button><button class="btn">রুটিন সংরক্ষণ</button></div></form></div></section>
+ <section class="panel"><div class="panel-head"><h2>সংরক্ষিত রুটিন (${rows.length})</h2></div><div class="table-wrap"><table class="table"><thead><tr><th>শ্রেণি</th><th>শাখা/বিভাগ</th><th>বার</th><th>অ্যাকশন</th></tr></thead><tbody>${rows.map(x=>`<tr><td>${esc(x.class_name)}</td><td>${esc(x.group)}</td><td>${esc(x.day_name)}</td><td><button class="btn small" onclick="editRoutine('${esc(x.id)}')">Edit</button> <button class="btn red small" onclick="delCrud('routines','${esc(x.id)}')">Delete</button></td></tr>`).join('')}</tbody></table></div></section>`;
+}
+window.resetRoutine=()=>{document.getElementById('routineForm').reset();document.querySelector('#routineForm [name=id]').value='';refreshRoutineGroups()}
+window.editRoutine=id=>{const x=(DATA.routines||[]).find(r=>String(r.id)===String(id));if(!x)return;const f=document.getElementById('routineForm');f.elements.id.value=x.id;f.elements.class_name.value=x.class_name;refreshRoutineGroups(x.group);f.elements.day_name.value=x.day_name;(x.periods||[]).forEach((v,i)=>f.elements['p'+i].value=v||'');f.scrollIntoView({behavior:'smooth'})}
+function refreshRoutineGroups(wanted=''){const f=document.getElementById('routineForm');if(!f)return;const c=f.elements.class_name.value,groups=DATA.classGroups?.[c]||[];const s=f.elements.group;s.innerHTML=groups.map(x=>`<option>${esc(x)}</option>`).join('');if(wanted&&groups.includes(wanted))s.value=wanted}
+
+function render(){
+ const titles={school:'বিদ্যালয়ের তথ্য',slides:'স্লাইডার',notices:'নোটিশ',holidays:'ছুটির নোটিশ',headteacher:'প্রধান শিক্ষক',staff:'শিক্ষক-কর্মচারী',committee:'কমিটি',students:'শিক্ষার্থী পরিসংখ্যান',merit:'কৃতি শিক্ষার্থী',routine:'রুটিন',history:'বিদ্যালয়ের ইতিহাস',gallery:'গ্যালারি',documents:'প্রাতিষ্ঠানিক নথি'};
+ $('#pageTitle').textContent=titles[current]||'Web Management';
+ let html='';
+ if(current==='school')html=schoolSection();
+ else if(current==='headteacher')html=headteacherSection();
+ else if(current==='students')html=studentsSection();
+ else if(current==='routine')html=routineSection();
+ else html=crudSection(current);
+ $('#content').innerHTML=html;
+ bindForms();
+ if(current==='routine'){refreshRoutineGroups();document.querySelector('#routineForm [name=class_name]').addEventListener('change',()=>refreshRoutineGroups())}
+}
+function bindForms(){
+ const cf=document.getElementById('crudForm');
+ if(cf)cf.onsubmit=async e=>{e.preventDefault();const key=cf.dataset.key,item=fieldsToObj(cf);for(const f of schema[key].fields){if(f[2]==='file'){const file=cf.elements[f[0]].files[0];if(file)item[f[0]]=await uploadFile(file);else if(item.id){const old=(DATA[key]||[]).find(x=>String(x.id)===String(item.id));if(old?.[f[0]])item[f[0]]=old[f[0]]}delete item[f[0]+'_file']}}item.sort_order=Number(item.sort_order||0);item.is_active=1;await api({action:'upsert',collection:key,item});msg('সংরক্ষণ হয়েছে');render()};
+ const sf=document.getElementById('schoolForm');
+ if(sf)sf.onsubmit=async e=>{e.preventDefault();const value=fieldsToObj(sf);for(const name of ['schoolLogo','boardLogo']){const file=sf.elements[name].files[0];if(file){const up=await uploadFile(file);value[name]=up.url;value[name+'Obj']=up}else{value[name]=DATA.school[name];value[name+'Obj']=DATA.school[name+'Obj']}}await api({action:'saveSchool',value});msg('বিদ্যালয়ের তথ্য আপডেট হয়েছে');render()};
+ const hf=document.getElementById('headForm');
+ if(hf)hf.onsubmit=async e=>{e.preventDefault();const value=fieldsToObj(hf);const file=hf.elements.image?.files[0];if(file)value.image=(await uploadFile(file)).url;else value.image=DATA.headteacher?.image||'';value.is_headteacher=1;await api({action:'saveHeadteacher',value});msg('প্রধান শিক্ষকের তথ্য আপডেট হয়েছে');render()};
+ const st=document.getElementById('studentsForm');
+ if(st)st.onsubmit=async e=>{e.preventDefault();const rows=[...st.querySelectorAll('tbody tr')].map(tr=>{const x={className:tr.dataset.class};['total','male','female','muslim','hindu','christian','buddhist','other'].forEach(k=>x[k]=Number(tr.querySelector(`[name="${k}"]`).value||0));return x});await api({action:'replace',collection:'students',value:rows});msg('শিক্ষার্থী পরিসংখ্যান আপডেট হয়েছে');render()};
+ const gf=document.getElementById('groupsForm');
+ if(gf)gf.onsubmit=async e=>{e.preventDefault();const fd=new FormData(gf),value={};for(const c of ['ষষ্ঠ','সপ্তম','অষ্টম','নবম','দশম'])value[c]=String(fd.get(c)||'').split(',').map(x=>x.trim()).filter(Boolean);await api({action:'saveClassGroups',value});msg('শাখা/বিভাগ আপডেট হয়েছে');render()};
+ const rf=document.getElementById('routineForm');
+ if(rf)rf.onsubmit=async e=>{e.preventDefault();const v=fieldsToObj(rf);const item={id:v.id,class_name:v.class_name,group:v.group,day_name:v.day_name,periods:Array.from({length:8},(_,i)=>v['p'+i]||''),is_active:1};await api({action:'upsert',collection:'routines',item});msg('রুটিন আপডেট হয়েছে');render()};
+}
+document.getElementById('loginForm').onsubmit=async e=>{e.preventDefault();const password=$('#password').value;const r=await fetch(AUTH,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password})});const j=await r.json();if(!r.ok){$('#loginMsg').innerHTML=`<div class="note error">${j.error==='admin_password_not_configured'?'Netlify Environment variable ADMIN_PASSWORD সেট করা হয়নি।':'Password সঠিক নয়।'}</div>`;return}location.reload()}
+(async()=>{const me=await authMe();if(me.authenticated){$('#loginView').classList.add('hidden');$('#appView').classList.remove('hidden');await reload();nav('school')}else{$('#loginView').classList.remove('hidden')}})();
+</script>
+</body></html>

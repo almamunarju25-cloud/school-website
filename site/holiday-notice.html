@@ -1,0 +1,10 @@
+<!doctype html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ছুটির নোটিশ</title></head><body>
+<script>
+(function(){
+ const id=new URLSearchParams(location.search).get('id');
+ if(id){location.replace('/.netlify/functions/public-file?kind=holiday&id='+encodeURIComponent(id));}
+ else{location.replace('index.html');}
+})();
+</script>
+<script src="school-info.js?v=global-name-1"></script>
+</body></html>

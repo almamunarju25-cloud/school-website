@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ভর্তি আবেদনকৃত শিক্ষার্থীদের তালিকা</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f5f8f7;color:#132b2d;font-family:'Noto Serif Bengali','Kalpurush','Times New Roman',serif}.topgap{height:18px}.page{width:min(1200px,96%);margin:auto;background:#fff;min-height:96vh;box-shadow:0 2px 14px #0001;padding:22px 34px 50px}.head{position:relative;border-bottom:2px solid #222;padding:0 0 18px;display:flex;align-items:center;justify-content:center;gap:28px}.logo{width:96px;height:96px;object-fit:contain;display:block}.school{text-align:center}.school h1{margin:0;color:#061d9b;font-size:38px;line-height:1.2}.school .place{font-size:18px;color:#173bce;margin-top:3px}.school .meta{font-size:15px;margin-top:2px}.home{position:absolute;right:0;top:6px;background:#0b927b;color:#fff;text-decoration:none;padding:8px 14px;border-radius:7px;font-size:14px}.title{text-align:center;font-size:25px;margin:16px 0 28px;font-weight:700}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap}.toolbar .left{font-size:15px}.actions{display:flex;gap:8px}.btn{border:0;border-radius:6px;padding:9px 13px;font-family:inherit;cursor:pointer;font-weight:700}.download{background:#e8a21b;color:#222}.print{background:#0b927b;color:#fff}.tablewrap{overflow:auto;border:1px solid #d7e1df}.table{width:100%;border-collapse:collapse;min-width:980px}.table th{background:#08a778;color:#fff;border:1px solid #0a654f;padding:14px 8px;font-size:19px;text-align:center}.table td{border:1px solid #8f9996;padding:13px 10px;font-size:17px;vertical-align:middle;text-align:center}.table th:first-child,.table td:first-child{width:72px;min-width:72px;max-width:72px;padding-left:5px;padding-right:5px}.table th:nth-child(2),.table td:nth-child(2){min-width:190px}.table th:nth-child(3),.table td:nth-child(3){min-width:190px}.table th:nth-child(6),.table td:nth-child(6){min-width:250px}.table tbody tr:nth-child(even){background:#f7fbfa}.empty{text-align:center!important;padding:40px!important;color:#63706e}.small{font-size:12px;color:#546865}.footer-note{margin-top:14px;font-size:13px;color:#516462}.count{font-weight:700;color:#086d5a}
+@media(max-width:700px){.page{width:100%;padding:15px}.head{justify-content:flex-start}.logo{width:66px;height:66px}.school h1{font-size:25px}.school .place{font-size:14px}.school .meta{font-size:11px}.home{position:static;margin-left:auto}.title{font-size:20px}.btn{padding:8px 10px}}
+@media print{body{background:#fff}.topgap,.toolbar,.home,.footer-note{display:none!important}.page{width:100%;box-shadow:none;padding:0}.table{min-width:0}.table th{background:#08a778!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+/* GLOBAL_REQUIRED_STAR_INLINE */
+label em, label .required, label .required-star, .form-label em, .form-label .required, .form-label .required-star {
+  display:inline !important;
+  position:static !important;
+  float:none !important;
+  margin:0 0 0 3px !important;
+  padding:0 !important;
+  vertical-align:baseline !important;
+  white-space:nowrap !important;
+  color:#dc2626;
+  font-style:normal;
+}
+</style>
+</head>
+<body>
+<div class="topgap"></div>
+<main class="page">
+<header class="head">
+<img class="logo" src="sc.png" alt="Ballovpur High School Logo">
+<div class="school"><h1>বল্লভপুর উচ্চ বিদ্যালয়</h1><div class="place">ডাকঘর: নাগেশ্বরী, উপজেলা: নাগেশ্বরী, জেলা: কুড়িগ্রাম</div><div class="meta">Mobile: 01792838223 &nbsp; | &nbsp; E-mail: ballovpurhighschool@gamil.com</div></div>
+<a class="home" href="index.html">⌂ হোমপেজ</a>
+</header>
+<div class="title">ভর্তি আবেদনকৃত শিক্ষার্থীদের নামের তালিকা</div>
+<div class="toolbar"><div class="left">মোট আবেদন: <span class="count" id="count">০</span></div><div class="actions"><button class="btn print" onclick="window.print()">প্রিন্ট / PDF</button><button class="btn download" id="downloadBtn">তালিকা ডাউনলোড</button></div></div>
+<div class="tablewrap"><table class="table"><thead><tr><th>ক্রমিক নং</th><th>শিক্ষার্থীর নাম</th><th>পিতার নাম</th><th>শ্রেণি</th><th>ফোন নম্বর</th><th>শিক্ষার্থীর ঠিকানা</th><th>আবেদনের তারিখ</th></tr></thead><tbody id="rows"></tbody></table></div>
+<div class="footer-note">এই তালিকাটি ভর্তি ফরমে সংরক্ষিত আবেদন থেকে স্বয়ংক্রিয়ভাবে তৈরি হয়।</div>
+</main>
+<script>
+const list=JSON.parse(localStorage.getItem('studentApplications')||'[]');
+const rows=document.getElementById('rows'), count=document.getElementById('count');
+const bn=n=>Number(n||0).toLocaleString('bn-BD',{useGrouping:false});
+count.textContent=bn(list.length);
+function esc(v){return String(v??'').replace(/[&<>\"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#039;'}[m]))}
+function address(x){return [x.village,x.post,x.upazila,x.district,x.division].filter(Boolean).join(', ')||'-'}
+if(!list.length){rows.innerHTML='<tr><td class="empty" colspan="7">এখনও কোনো ভর্তি আবেদন জমা হয়নি।</td></tr>'}
+else list.slice().reverse().forEach((x,i)=>{const tr=document.createElement('tr');tr.innerHTML=`<td>${bn(i+1)}</td><td>${esc(x.name_bn||x.name_en||'-')}</td><td>${esc(x.father_bn||x.father_en||'-')}</td><td>${esc(x.class||'-')}</td><td>${esc(x.father_phone||'-')}</td><td>${esc(address(x))}</td><td>${esc(x.applied_at||'-')}</td>`;rows.appendChild(tr)});
+function csv(){
+ const headers=['ক্রমিক নং','শিক্ষার্থীর নাম','পিতার নাম','শ্রেণি','ফোন নম্বর','শিক্ষার্থীর ঠিকানা','আবেদনের তারিখ'];
+ const visible=list.slice().reverse();
+ const lines=[headers,...visible.map((x,i)=>[i+1,x.name_bn||x.name_en||'',x.father_bn||x.father_en||'',x.class||'',x.father_phone||'',address(x),x.applied_at||''])]
+   .map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(','));
+ const blob=new Blob(['\ufeff'+lines.join('\n')],{type:'text/csv;charset=utf-8'}), a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);a.download='admission-applications.csv';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),500);
+}
+document.getElementById('downloadBtn').addEventListener('click',csv);
+setTimeout(()=>{if(list.length && confirm('ভর্তি আবেদনকারীদের তালিকাটি এখনই ডাউনলোড করতে চান?')) csv()},350);
+</script>
+<script src="school-info.js?v=global-name-1"></script>
+</body>
+</html>

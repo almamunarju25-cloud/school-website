@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>সকল নোটিশ | বল্লভপুর উচ্চ বিদ্যালয়</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+*{box-sizing:border-box}
+:root{--teal:#148a92;--teal2:#55aeb5;--ink:#16394a;--muted:#758894;--line:#dbe8ea;--soft:#f5fbfb;--orange:#ee8a27}
+body{margin:0;color:var(--ink);font-family:Kalpurush,"Times New Roman",serif;background:#eef6f5}
+.notice-page{min-height:100vh;padding:22px 30px 56px;background:
+  radial-gradient(circle at 15% 12%,rgba(69,168,176,.10),transparent 30%),
+  radial-gradient(circle at 88% 15%,rgba(238,138,39,.08),transparent 24%),
+  linear-gradient(rgba(255,255,255,.90),rgba(255,255,255,.94)),url('22.png') center/cover fixed}
+.notice-wrap{max-width:1240px;margin:0 auto;background:rgba(255,255,255,.97);border:1px solid rgba(204,224,226,.9);border-radius:18px;overflow:hidden;box-shadow:0 18px 55px rgba(26,91,95,.14)}
+.notice-head{min-height:116px;padding:22px 28px;background:linear-gradient(118deg,#0b6f78 0%,#168b92 58%,#4fb5b7 100%);color:#fff;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
+.notice-head:before,.notice-head:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.16)}
+.notice-head:before{width:210px;height:210px;right:-70px;top:-125px}.notice-head:after{width:130px;height:130px;right:120px;bottom:-92px}
+.head-left{display:flex;align-items:center;gap:15px;position:relative;z-index:1}.head-icon{width:50px;height:50px;border-radius:14px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;font-size:21px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.notice-head h1{font-size:27px;margin:0 0 4px;font-weight:600}.notice-head p{font-size:12px;margin:0;opacity:.88}
+.home-btn{position:relative;z-index:1;text-decoration:none;color:#0d6f78;background:#fff;border-radius:999px;padding:9px 15px;font-size:11px;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.10)}
+.content{padding:20px 22px 22px}
+.overview{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;margin-bottom:16px}
+.title-stack small{display:block;color:var(--orange);font-size:11px;font-weight:700;margin-bottom:2px}.title-stack h2{margin:0;font-size:21px;color:#173b4b}.title-stack p{margin:4px 0 0;color:#82919b;font-size:10.5px}
+.count-badge{height:34px;padding:0 12px;border-radius:999px;background:#edf8f8;color:#2c8990;display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:700;border:1px solid #d9eded}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#f8fbfb;border:1px solid #e0eaec;border-radius:12px;padding:10px 12px;margin-bottom:13px}
+.page-size-wrap{display:flex;align-items:center;gap:7px;color:#60737f;font-size:11px}.page-size{height:34px;border:1px solid #d2e0e2;border-radius:8px;background:#fff;padding:0 26px 0 9px;color:#38515d;font-family:inherit}
+.search-wrap{position:relative;width:260px;max-width:52%}.search-wrap i{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:#84a0a5;font-size:11px}.search-input{width:100%;height:36px;border:1px solid #d2e0e2;border-radius:9px;padding:0 11px 0 31px;font-family:inherit;font-size:11px;outline:none;background:#fff}.search-input:focus{border-color:#65b2b8;box-shadow:0 0 0 3px rgba(69,168,176,.10)}
+.table-shell{border:1px solid #dbe7e9;border-radius:13px;overflow:hidden;background:#fff}
+.notice-table-head,.notice-row{display:grid;grid-template-columns:70px minmax(0,1fr) 180px 195px;align-items:center}
+.notice-table-head{min-height:43px;background:linear-gradient(90deg,#247f8a,#48a3ad);color:#fff;font-size:11px;font-weight:700;text-align:center}
+.notice-table-head>div:nth-child(2){text-align:left;padding-left:14px}
+.notice-row{min-height:76px;border-top:1px solid #e6edef;background:#fff;transition:.18s ease;position:relative}
+.notice-row:hover{background:#fbfefe;transform:translateY(-1px);box-shadow:0 7px 18px rgba(30,110,115,.07);z-index:1}
+.notice-serial{text-align:center}.serial-badge{width:34px;height:34px;border-radius:50%;background:linear-gradient(145deg,#e7f7f8,#f5fbfb);color:#258893;display:inline-grid;place-items:center;font-size:11px;font-weight:700;border:1px solid #d8edef}
+.notice-main{padding:10px 14px;min-width:0}.notice-title-link{color:#183b4b;text-decoration:none;font-weight:700;font-size:12.5px;line-height:1.5;display:block}.notice-title-link:hover{color:#148a92}.notice-snippet{display:block;color:#83929d;font-size:9.5px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.notice-date{text-align:center;color:#58707c;font-size:10.5px}.notice-date-chip{display:inline-flex;align-items:center;gap:6px;background:#f6f9fa;border:1px solid #e1e8ea;border-radius:8px;padding:7px 9px;white-space:nowrap}.notice-date i{color:#e29339}
+.notice-actions{display:flex;justify-content:center;gap:7px}.action-btn{height:33px;padding:0 11px;border-radius:8px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;border:1px solid transparent;transition:.18s ease}
+.view-btn{background:linear-gradient(135deg,#3c9ba5,#278994);color:#fff;box-shadow:0 5px 12px rgba(45,145,153,.16)}.view-btn:hover{transform:translateY(-1px)}
+.download-btn{background:#fff8ee;color:#a8681e;border-color:#f1d3a6}.download-btn:hover{background:#fff1db}.download-btn.disabled{opacity:.45;pointer-events:none}
+.empty-notice{padding:55px 20px;text-align:center;color:#83929d}.empty-notice i{display:block;font-size:28px;color:#bdd8da;margin-bottom:9px}
+.footer-row{display:flex;justify-content:space-between;align-items:center;padding:14px 2px 0;font-size:10.5px;color:#61747f}
+.pagination{display:flex;align-items:center}.page-btn{min-width:34px;height:32px;border:1px solid #d0dee1;background:#fff;color:#58707a;font-family:inherit;cursor:pointer;padding:0 10px;margin-left:-1px}.page-btn:first-child{border-radius:7px 0 0 7px;margin-left:0}.page-btn:last-child{border-radius:0 7px 7px 0}.page-btn.active{background:#178d96;color:#fff;border-color:#178d96;position:relative;z-index:1}.page-btn:disabled{opacity:.42;cursor:not-allowed;background:#f5f8f8}
+@media(max-width:820px){.notice-page{padding:10px}.notice-wrap{border-radius:12px}.notice-head{min-height:auto;padding:17px 14px}.notice-head h1{font-size:21px}.head-icon{width:42px;height:42px}.overview{grid-template-columns:1fr}.count-badge{justify-self:start}.toolbar{align-items:stretch;flex-direction:column}.search-wrap{width:100%;max-width:none}.notice-table-head{display:none}.notice-row{grid-template-columns:52px 1fr;min-height:95px;padding:8px 0}.notice-main{padding-right:10px}.notice-date{grid-column:2;text-align:left;padding:0 10px 7px}.notice-actions{grid-column:2;justify-content:flex-start;padding:0 10px 6px}.footer-row{align-items:flex-start;gap:10px;flex-direction:column}.pagination{align-self:flex-end}}
+@media(max-width:480px){.home-btn span{display:none}.notice-page{padding:0}.notice-wrap{border-radius:0;border-left:0;border-right:0}.content{padding:15px 10px}.notice-actions{flex-wrap:wrap}}
+</style>
+
+<style id="notice-direct-file-css">
+.notice-no-file{cursor:default!important;opacity:.72!important}
+.action-btn.disabled{opacity:.48!important;pointer-events:none!important;cursor:not-allowed!important}
+</style>
+</head>
+<body>
+<main class="notice-page">
+  <div class="notice-wrap">
+    <header class="notice-head">
+      <div class="head-left">
+        <div class="head-icon"><i class="fa-solid fa-bullhorn"></i></div>
+        <div><h1>সকল নোটিশ</h1><p>বিদ্যালয়ের প্রকাশিত সকল গুরুত্বপূর্ণ নোটিশ এক জায়গায়</p></div>
+      </div>
+      <a class="home-btn" href="index.html"><i class="fa-solid fa-house"></i> <span>হোমপেজ</span></a>
+    </header>
+
+    <section class="content">
+      <div class="overview">
+        <div class="title-stack"><small>NOTICE ARCHIVE</small><h2>নোটিশ তালিকা</h2><p>নোটিশ দেখুন, খুঁজুন এবং সংযুক্ত ফাইল থাকলে ডাউনলোড করুন।</p></div>
+        <div class="count-badge"><i class="fa-solid fa-list-check"></i> মোট <span data-notice-count>0</span> টি নোটিশ</div>
+      </div>
+
+      <div class="toolbar">
+        <label class="page-size-wrap">প্রতি পেজে
+          <select id="noticePageSize" class="page-size"><option value="5">৫</option><option value="10" selected>১০</option><option value="20">২০</option></select> টি
+        </label>
+        <div class="search-wrap"><i class="fa-solid fa-magnifying-glass"></i><input id="noticeSearch" class="search-input" type="search" placeholder="নোটিশ খুঁজুন..."></div>
+      </div>
+
+      <div class="table-shell">
+        <div class="notice-table-head">
+          <div>ক্রমিক</div><div>নোটিশের বিবরণ</div><div>প্রকাশের তারিখ</div><div>কার্যক্রম</div>
+        </div>
+        <div class="all-notices-list" data-all-notices></div>
+      </div>
+
+      <div class="footer-row">
+        <div data-notice-summary>০টির মধ্যে ০–০ দেখানো হচ্ছে</div>
+        <div class="pagination" data-pagination></div>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="notices-direct-v5.js"></script>
+<script src="school-info.js?v=global-name-1"></script>
+</body>
+</html>
