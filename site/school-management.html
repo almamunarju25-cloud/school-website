@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="বিদ্যালয়ের ডিজিটাল ব্যবস্থাপনা ও অনলাইন সেবার পরিচিতি">
+  <title>স্কুল ম্যানেজমেন্ট</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root{
+      --ink:#173b50;--muted:#718495;--green:#087e61;--green-dark:#063b52;
+      --teal:#178f7b;--blue:#1c78b8;--soft:#f2f8fb;--line:#dce9ed;
+      --shadow:0 12px 30px rgba(27,69,91,.10);--radius:16px;--page-width:min(1570px,calc(100% - 56px));--shell-width:min(1760px,calc(100% - 56px));--shell-inset:30px;--content-width:calc(var(--shell-width) - (var(--shell-inset) * 2))
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#fff;color:var(--ink);font-family:"Kalpurush","Times New Roman",sans-serif;font-size:16px;line-height:1.8;padding:8px 0}
+    a{text-decoration:none;color:inherit}
+    img{display:block;max-width:100%}
+    .sm-page-shell{width:var(--shell-width);margin:0 auto;padding:14px 0;border:1px solid #a9c4ce;border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 2px 12px rgba(34,77,94,.12)}
+    .sm-topbar{width:var(--content-width);margin:0 auto;background:#00a500;color:#fff;min-height:39px;font-size:13px}
+    .sm-topbar-inner{width:100%;margin:auto;padding:0 38px;display:flex;align-items:center;gap:0;min-height:39px}
+    .sm-topbar a{display:inline-flex;align-items:center;gap:7px;padding:6px 16px;border-right:1px solid rgba(255,255,255,.28);transition:.2s;line-height:1.2}
+    .sm-topbar a:first-child{padding-left:0}.sm-topbar a:hover{background:rgba(0,0,0,.13)}
+    .sm-wrap{width:var(--content-width);margin:auto}
+    .sm-hero{margin-top:10px;min-height:365px;border-radius:4px;overflow:hidden;position:relative;color:#fff;background:linear-gradient(120deg,#153f52 0%,#176b70 52%,#238e73 100%)}
+    .sm-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 82% 18%,rgba(255,255,255,.16),transparent 30%);pointer-events:none}
+    .sm-hero-inner{position:relative;z-index:1;max-width:760px;padding:55px 62px 38px}
+    .sm-badge{display:inline-flex;align-items:center;gap:8px;padding:4px 13px;border:1px solid rgba(255,255,255,.27);border-radius:22px;background:rgba(255,255,255,.09);font-size:12px}
+    .sm-badge i{color:#c9ffeb}
+    .sm-hero h1{font-size:39px;line-height:1.18;font-weight:500;margin:16px 0 12px;letter-spacing:.1px}
+    .sm-hero h1 strong{color:#d5fff1;font-weight:600}
+    .sm-hero p{max-width:700px;margin:0;color:rgba(255,255,255,.84);font-size:16px;line-height:1.9}
+    .sm-hero-contact{display:flex;flex-wrap:wrap;gap:14px 24px;margin-top:11px;color:#d5fff1;font-size:14px}.sm-hero-contact span{display:inline-flex;align-items:flex-start;gap:6px}.sm-hero-contact i{margin-top:5px;color:#a4f0d3}
+    .sm-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:23px}
+    .sm-btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.55);border-radius:7px;padding:8px 15px;color:#fff;font-size:14px;transition:.2s}
+    .sm-btn.primary{background:#128ee8;border-color:#128ee8}.sm-btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+    .sm-quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px;max-width:735px}
+    .sm-quick-card{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:10px 12px;min-height:58px}
+    .sm-quick-card b{display:block;font-size:12px;font-family:"Times New Roman",sans-serif;font-weight:700;color:#fff}
+    .sm-quick-card span{display:block;font-size:12px;color:rgba(255,255,255,.82);line-height:1.45}
+    .sm-section{padding:48px 0 50px}
+    .sm-section.soft{background:var(--soft)}
+    .sm-heading{text-align:center;max-width:760px;margin:0 auto 29px}
+    .sm-kicker{display:block;color:#25987e;font-size:12px;letter-spacing:1px;font-family:"Times New Roman",serif;font-weight:700}
+    .sm-heading h2{margin:5px 0 8px;font-size:31px;line-height:1.25;font-weight:500;color:#173d53}
+    .sm-heading p{margin:0;color:var(--muted);font-size:15px}
+    .sm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:21px}
+    .sm-card{background:#fff;border:1px solid #e3edf0;border-radius:var(--radius);padding:25px 24px;box-shadow:var(--shadow);min-height:178px}
+    .sm-card-icon{width:43px;height:43px;border-radius:12px;display:grid;place-items:center;background:#eaf7f3;color:#078463;font-size:20px;margin-bottom:13px}
+    .sm-card:nth-child(2) .sm-card-icon{background:#eaf4fb;color:#1779b2}.sm-card:nth-child(3) .sm-card-icon{background:#edf8f1;color:#25895b}
+    .sm-card h3{font-size:19px;font-weight:500;margin:0 0 5px;color:#21475a}.sm-card p{margin:0;color:#788995;font-size:14px;line-height:1.7}
+    .sm-feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .sm-feature{background:#fff;border:1px solid #e3edf0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);min-height:272px}
+    .sm-feature img{width:100%;height:168px;object-fit:cover;background:#e5f1ef}
+    .sm-feature-body{padding:15px 17px 20px;min-height:104px}.sm-feature-body h3{font-size:18px;font-weight:500;margin:0 0 4px;color:#21475a}.sm-feature-body p{margin:0;color:#7d8d98;font-size:14px;line-height:1.7}
+    .sm-feature-title{display:flex;align-items:center;gap:8px}.sm-feature-title i{color:#138564;font-size:14px}
+    .sm-operational{display:grid;grid-template-columns:1fr 1fr;gap:54px;align-items:center;padding:16px 0 8px}
+    .sm-operational h2{text-align:left;margin-top:4px}.sm-operational p{color:var(--muted);font-size:14px;margin:0 0 14px}
+    .sm-checks{display:grid;gap:5px;margin:0;padding:0;list-style:none;color:#506d7b;font-size:13px}.sm-checks li{display:flex;align-items:center;gap:8px}.sm-checks i{color:#15936d;font-size:12px}
+    .sm-operational-img{width:100%;height:250px;object-fit:cover;border-radius:18px;box-shadow:0 12px 28px rgba(31,79,89,.15)}
+    .sm-access{background:linear-gradient(135deg,#e9f5f6,#f3f8fc);padding:42px 0 50px}
+    .sm-access-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:100%;margin:auto}
+    .sm-access-card{display:flex;flex-direction:column;min-height:655px;background:#fff;border-radius:15px;overflow:hidden;border:1px solid #dcebef;box-shadow:0 9px 24px rgba(39,82,100,.10)}
+    .sm-access-top{height:194px;color:#fff;padding:20px 28px;display:flex;align-items:flex-end;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(17,48,75,.94),rgba(36,78,111,.84)),url("computer%20lab.png") center/cover}
+    .sm-access-card:nth-child(2) .sm-access-top{background:linear-gradient(135deg,rgba(0,117,77,.94),rgba(12,164,119,.83)),url("school%20field.png") center/cover}.sm-access-card:nth-child(3) .sm-access-top{background:linear-gradient(135deg,rgba(23,81,127,.94),rgba(33,139,194,.84)),url("scince%20lab.png") center/cover}
+    .sm-access-top:after{content:"";position:absolute;width:170px;height:170px;border:1px solid rgba(255,255,255,.15);border-radius:50%;right:-43px;top:-72px}
+    .sm-access-top small{display:inline-flex;align-items:center;gap:7px;border:1px solid rgba(255,255,255,.42);border-radius:22px;padding:4px 14px;font-size:14px;line-height:1.4;position:relative;z-index:1}.sm-access-top i{position:absolute;right:28px;bottom:28px;width:80px;height:80px;display:grid;place-items:center;background:#fff;border-radius:21px;font-size:33px;color:#1e4565;z-index:1}.sm-access-card:nth-child(2) .sm-access-top i{color:#087b58}.sm-access-card:nth-child(3) .sm-access-top i{color:#2878ae}
+    .sm-access-body{display:flex;flex:1;flex-direction:column;padding:24px 32px 33px}.sm-access-body h3{margin:0 0 7px;color:#173b50;font-size:24px;line-height:1.3;font-weight:500}.sm-access-body p{min-height:84px;color:#7b8c96;font-size:15px;line-height:1.75;margin:0 0 15px}.sm-access-checks{display:grid;gap:10px;min-height:122px;margin:0 0 17px;padding:0;list-style:none;color:#536f7d;font-size:15px;line-height:1.45}.sm-access-checks li{display:flex;align-items:flex-start;gap:9px}.sm-access-checks i{flex:0 0 auto;margin-top:5px;color:#284c68;font-size:14px}.sm-access-card:nth-child(2) .sm-access-checks i{color:#07825e}.sm-access-card:nth-child(3) .sm-access-checks i{color:#247bb5}.sm-access-btn{display:flex;justify-content:center;align-items:center;min-height:60px;margin-top:auto;background:#214e70;color:#fff;border-radius:14px;padding:10px 14px;font-size:17px;line-height:1.35;box-shadow:0 7px 16px rgba(30,74,101,.13)}.sm-access-card:nth-child(2) .sm-access-btn{background:#079a6c;box-shadow:0 7px 16px rgba(7,154,108,.17)}.sm-access-card:nth-child(3) .sm-access-btn{background:#197bb4;box-shadow:0 7px 16px rgba(25,123,180,.17)}
+    .sm-security-note{display:flex;align-items:center;gap:18px;max-width:100%;margin:38px auto 0;padding:22px 25px;border:1px solid #d4e5eb;border-radius:16px;background:rgba(255,255,255,.9);box-shadow:0 8px 22px rgba(48,94,111,.08)}.sm-security-icon{width:56px;height:56px;flex:0 0 56px;display:grid;place-items:center;border-radius:16px;background:#e7f5f0;color:#087d61;font-size:24px}.sm-security-note h3{margin:0;color:#20465a;font-size:18px;font-weight:500;line-height:1.35}.sm-security-note p{margin:2px 0 0;color:#7a8c96;font-size:14px;line-height:1.7}
+    .sm-footer{width:var(--content-width);margin:0 auto;background:#092a43;color:#fff;padding-top:31px}.sm-footer-grid{width:100%;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:35px;padding:0 28px 25px}.sm-footer-grid>div:first-child{display:flex;flex-direction:column;align-items:flex-start}.sm-footer-grid>div:first-child>p{width:100%;max-width:470px;margin:12px 0 0;padding-left:61px;text-align:left}.sm-footer h3{font-size:17px;font-weight:500;margin:0 0 12px;color:#fff}.sm-footer p,.sm-footer a{font-size:13px;line-height:1.85;color:rgba(255,255,255,.72);margin:0}.sm-footer a{display:block}.sm-footer a:hover{color:#fff}.sm-brand{display:flex;align-items:center;gap:13px;margin-bottom:0}.sm-brand img{width:48px;height:48px;object-fit:contain;border-radius:50%;background:#fff}.sm-brand strong{display:block;font-family:"Times New Roman",sans-serif;font-size:19px;color:#fff}.sm-brand small{display:block;color:#7ae0c2;font-size:11px}.sm-contact-list{display:grid;gap:5px}.sm-contact-list a{display:flex;align-items:flex-start;gap:8px}.sm-contact-list i{width:16px;color:#67dbc0;margin-top:5px}.sm-bottom{border-top:1px solid rgba(255,255,255,.14);padding:10px 0;text-align:center;color:rgba(255,255,255,.64);font-size:12px}
+    #features,#login-cards{scroll-margin-top:18px}
+
+    .sm-login-overlay{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(33,40,43,.68)}
+    .sm-login-overlay.show{display:flex}
+    .sm-login-modal{position:relative;width:min(406px,calc(100vw - 24px));padding:28px 40px 22px;background:#fff;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.25);color:#173b50}
+    .sm-login-close{position:absolute;right:17px;top:10px;border:0;background:transparent;color:#849098;font-size:29px;line-height:1;cursor:pointer}
+    .sm-login-modal h2{margin:2px 0 13px;text-align:center;font-size:28px;line-height:1.3;font-weight:500;color:#173b50}
+    .sm-login-hint{margin:-2px 0 14px;text-align:center;color:#74828a;font-size:14px;line-height:1.55}
+    .sm-input-wrap{height:54px;display:flex;align-items:center;gap:12px;margin-top:14px;padding:0 14px;border:1px solid #cbd5db;border-radius:10px;background:#fff;color:#707b81}
+    .sm-input-wrap i{width:20px;text-align:center;font-size:17px}
+    .sm-input-wrap input{min-width:0;width:100%;border:0;outline:0;background:transparent;color:#173b50;font-family:"Kalpurush","Times New Roman",sans-serif;font-size:16px}
+    .sm-input-wrap input::placeholder{color:#7b858a}
+    .sm-login-submit{width:100%;height:54px;margin-top:17px;border:0;border-radius:10px;background:#08c98a;color:#fff;cursor:pointer;font-family:"Kalpurush","Times New Roman",sans-serif;font-size:19px;box-shadow:0 6px 14px rgba(8,201,138,.2)}
+    .sm-login-submit:hover{filter:brightness(1.04)}
+    .sm-forgot{display:flex;align-items:center;justify-content:center;min-height:58px;margin-top:34px;border-radius:5px;background:#edf2f4;color:#75828a;font-size:15px}
+    @media(max-width:680px){.sm-login-modal{padding:27px 22px 20px}.sm-login-modal h2{font-size:25px}.sm-login-hint{font-size:13px}.sm-forgot{margin-top:27px}}
+    @media(max-width:900px){.sm-hero-inner{padding:45px 40px}.sm-hero h1{font-size:34px}.sm-grid,.sm-feature-grid{gap:15px}.sm-operational{gap:28px}.sm-access-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:680px){body{font-size:15px;padding:4px 0}.sm-page-shell{width:calc(100% - 8px);padding:7px 0;border-radius:6px}.sm-topbar{width:calc(100% - 6px)}.sm-topbar-inner{overflow:auto;white-space:nowrap;padding:0 12px}.sm-topbar a{padding:7px 10px;font-size:11px}.sm-topbar a:first-child{padding-left:0}.sm-wrap{width:calc(100% - 6px)}.sm-hero{margin-top:7px;min-height:auto}.sm-hero-inner{padding:34px 22px 25px}.sm-hero h1{font-size:28px}.sm-hero p{font-size:14px;line-height:1.75}.sm-quick{grid-template-columns:repeat(2,1fr);margin-top:22px}.sm-quick-card{min-height:55px}.sm-section{padding:35px 0}.sm-heading{margin-bottom:21px}.sm-heading h2{font-size:25px}.sm-heading p{font-size:13px}.sm-grid,.sm-feature-grid{grid-template-columns:1fr;gap:13px}.sm-card{min-height:auto;padding:19px}.sm-feature{min-height:294px}.sm-feature img{height:185px}.sm-operational{grid-template-columns:1fr;gap:22px}.sm-operational h2{text-align:center}.sm-operational .sm-kicker{text-align:center}.sm-operational p{font-size:14px}.sm-operational-img{height:210px}.sm-access{padding:34px 0}.sm-access-grid{grid-template-columns:1fr;max-width:360px;gap:18px}.sm-access-card{min-height:auto}.sm-access-top{height:172px;padding:18px 20px}.sm-access-top small{font-size:13px;padding:4px 11px}.sm-access-top i{right:20px;bottom:20px;width:68px;height:68px;border-radius:18px;font-size:28px}.sm-access-body{padding:20px 20px 23px}.sm-access-body h3{font-size:21px}.sm-access-body p{min-height:auto;font-size:14px;margin-bottom:12px}.sm-access-checks{min-height:auto;gap:8px;margin-bottom:16px;font-size:14px}.sm-access-checks i{font-size:12px}.sm-access-btn{min-height:50px;font-size:15px;border-radius:11px}.sm-security-note{margin-top:25px;padding:17px 15px;gap:12px}.sm-security-icon{width:44px;height:44px;flex-basis:44px;border-radius:12px;font-size:20px}.sm-security-note h3{font-size:16px}.sm-security-note p{font-size:12px}.sm-footer-grid{grid-template-columns:1fr;gap:20px;padding:0 20px 22px}.sm-footer{width:calc(100% - 6px);padding-top:25px}.sm-footer h3{font-size:16px}}
+  </style>
+</head>
+<body>
+  <div class="sm-page-shell">
+  <div class="sm-topbar">
+    <div class="sm-topbar-inner">
+      <a href="#" data-open-login="admin"><i class="fa-solid fa-lock"></i> Admin Login</a>
+      <a href="#" data-open-login="teacher"><i class="fa-solid fa-chalkboard-user"></i> Teacher Login</a>
+      <a id="contactWhatsApp" href="https://wa.me/8801792838223?text=Assalamu%20Alaikum%2C%20school%20information%20please." target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Contact Us</a>
+      <a id="topLogout" href="index.html"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+    </div>
+  </div>
+
+  <main>
+    <div class="sm-wrap">
+      <section class="sm-hero">
+        <div class="sm-hero-inner">
+          <span class="sm-badge"><i class="fa-solid fa-graduation-cap"></i> স্মার্ট স্কুল ব্যবস্থাপনা</span>
+          <h1>এক প্ল্যাটফর্মে স্কুল পরিচালনার পূর্ণাঙ্গ ডিজিটাল সমাধান</h1>
+          <p>শিক্ষক, শিক্ষার্থী ও প্রশাসনের দৈনন্দিন কাজ—উপস্থিতি, ফি সংগ্রহ, রুটিন, ফলাফল, নোটিশ এবং রিপোর্ট এক জায়গা থেকে সহজে পরিচালনা করুন।</p>
+          <div class="sm-hero-contact"><span><i class="fa-solid fa-location-dot"></i><b data-school="address">পোস্ট: নাগেশ্বরী, উপজেলা: নাগেশ্বরী, জেলা: কুড়িগ্রাম</b></span><span><i class="fa-solid fa-phone"></i><b data-school="phone">01792838223</b></span></div>
+          <div class="sm-actions">
+            <a class="sm-btn primary" href="#features"><i class="fa-solid fa-list-check"></i> সুবিধা দেখুন</a>
+            <a class="sm-btn" href="#login-cards"><i class="fa-solid fa-right-to-bracket"></i> লগইন করুন</a>
+          </div>
+          <div class="sm-quick">
+            <div class="sm-quick-card"><b>Attendance</b><span>উপস্থিতি পরিচালনা</span></div>
+            <div class="sm-quick-card"><b>Fee Collection</b><span>ফি সংগ্রহ ও হিসাব</span></div>
+            <div class="sm-quick-card"><b>Result</b><span>ফলাফল ও মেধাতালিকা</span></div>
+            <div class="sm-quick-card"><b>Accounts</b><span>আয়-ব্যয় ও রিপোর্ট</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section id="features" class="sm-section">
+      <div class="sm-wrap">
+        <div class="sm-heading">
+          <span class="sm-kicker">SMART SCHOOL MANAGEMENT</span>
+          <h2>প্রতিদিনের কাজকে আরও দ্রুত, নির্ভুল ও নিয়ন্ত্রিত করুন</h2>
+          <p>শিক্ষা প্রতিষ্ঠানের প্রয়োজন অনুযায়ী তৈরি একটি সহজ, নিরাপদ ও ব্যবহারবান্ধব ডিজিটাল ব্যবস্থাপনা ব্যবস্থা।</p>
+        </div>
+        <div class="sm-grid">
+          <article class="sm-card"><div class="sm-card-icon"><i class="fa-solid fa-user-graduate"></i></div><h3>শিক্ষক কার্যক্রম</h3><p>উপস্থিতি নেওয়া, প্রোফাইল আপডেট, ক্লাস গ্রুপ ও প্রয়োজনীয় তথ্য দ্রুত পরিচালনা করুন।</p></article>
+          <article class="sm-card"><div class="sm-card-icon"><i class="fa-solid fa-building-columns"></i></div><h3>প্রশাসনিক নিয়ন্ত্রণ</h3><p>শাখা, শ্রেণি, বিষয়, শিক্ষার্থী ও বিদ্যালয়ের তথ্য এক জায়গা থেকে নিয়ন্ত্রণ করুন।</p></article>
+          <article class="sm-card"><div class="sm-card-icon"><i class="fa-solid fa-chart-line"></i></div><h3>রিপোর্ট ও বিশ্লেষণ</h3><p>উপস্থিতি, ফলাফল, নোটিশ, হিসাব এবং প্রয়োজনীয় রিপোর্ট সহজে দেখুন ও সংরক্ষণ করুন।</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sm-section soft">
+      <div class="sm-wrap">
+        <div class="sm-heading"><span class="sm-kicker">CORE FEATURES</span><h2>স্কুল পরিচালনার গুরুত্বপূর্ণ সব সুবিধা</h2></div>
+        <div class="sm-feature-grid">
+          <article class="sm-feature"><img src="school%20field.png" alt="দৈনিক উপস্থিতি ব্যবস্থাপনা"><div class="sm-feature-body"><div class="sm-feature-title"><i class="fa-regular fa-square-check"></i><h3>দৈনিক উপস্থিতি ব্যবস্থাপনা</h3></div><p>শিক্ষক নির্ধারিত ক্লাসের উপস্থিতি সহজে নিতে এবং প্রশাসন এক নজরে সারসংক্ষেপ দেখতে পারবেন।</p></div></article>
+          <article class="sm-feature"><img src="scince%20lab.png" alt="ফি কালেকশন ও হিসাব"><div class="sm-feature-body"><div class="sm-feature-title"><i class="fa-solid fa-calculator"></i><h3>ফি কালেকশন ও হিসাব</h3></div><p>শিক্ষার্থী ও অভিভাবকের হিসাব, ফি সংগ্রহ এবং প্রয়োজনীয় আর্থিক তথ্য গোছানোভাবে পরিচালনা করুন।</p></div></article>
+          <article class="sm-feature"><img src="computer%20lab.png" alt="আয়-ব্যয় ও ব্যাংক হিসাব"><div class="sm-feature-body"><div class="sm-feature-title"><i class="fa-solid fa-table-cells-large"></i><h3>আয়-ব্যয় ও ব্যাংক হিসাব</h3></div><p>স্কুলের দৈনিক আয়, ব্যয়, ব্যাংক লেনদেন ও হিসাবের প্রয়োজনীয় রিপোর্ট সংরক্ষণ করুন।</p></div></article>
+          <article class="sm-feature"><img src="22.png" alt="রেজাল্ট ও মার্কশিট"><div class="sm-feature-body"><div class="sm-feature-title"><i class="fa-regular fa-file-lines"></i><h3>রেজাল্ট ও মার্কশিট</h3></div><p>পরীক্ষার ফলাফল, মার্কশিট এবং শিক্ষার্থীদের একাডেমিক অগ্রগতি সুন্দরভাবে প্রকাশ করুন।</p></div></article>
+          <article class="sm-feature"><img src="librey.png" alt="ক্লাস রুটিন ও শিক্ষক দায়িত্ব"><div class="sm-feature-body"><div class="sm-feature-title"><i class="fa-regular fa-calendar-days"></i><h3>ক্লাস রুটিন ও শিক্ষক দায়িত্ব</h3></div><p>শ্রেণিভিত্তিক রুটিন, শিক্ষক দায়িত্ব এবং প্রয়োজনীয় একাডেমিক পরিকল্পনা আপডেট করুন।</p></div></article>
+          <article class="sm-feature"><img src="scince%20lab.png" alt="প্রয়োজনীয় নথিকা ও রিপোর্ট"><div class="sm-feature-body"><div class="sm-feature-title"><i class="fa-solid fa-book"></i><h3>প্রয়োজনীয় নথিকা ও রিপোর্ট</h3></div><p>নোটিশ, ইতিহাস, অনুমোদন, স্বীকৃতি এবং প্রতিষ্ঠানের গুরুত্বপূর্ণ নথি এক জায়গায় রাখুন।</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sm-section">
+      <div class="sm-wrap sm-operational">
+        <div>
+          <span class="sm-kicker">LIVE OPERATIONAL VIEW</span>
+          <h2 class="sm-heading">আজকের স্কুলের অবস্থা এক নজরে দেখুন</h2>
+          <p>ওয়েব ম্যানেজমেন্ট থেকে বিদ্যালয়ের গুরুত্বপূর্ণ তথ্য নিয়মিত আপডেট রাখুন। শিক্ষক, শিক্ষার্থী, অফিস ও প্রশাসনের কাজ একটি সমন্বিত ব্যবস্থায় পরিচালনা করা যায়।</p>
+          <ul class="sm-checks">
+            <li><i class="fa-solid fa-circle-check"></i> আজকের উপস্থিতি ও অনুপস্থিতির হিসাব</li>
+            <li><i class="fa-solid fa-circle-check"></i> শিক্ষার্থীদের ফি সংক্রান্ত তথ্য</li>
+            <li><i class="fa-solid fa-circle-check"></i> ফলাফল ও নোটিশ আপডেট</li>
+            <li><i class="fa-solid fa-circle-check"></i> রিপোর্ট ও প্রয়োজনীয় প্রশাসনিক তথ্য</li>
+          </ul>
+        </div>
+        <img class="sm-operational-img" src="computer%20lab.png" alt="বিদ্যালয়ের ডিজিটাল ব্যবস্থাপনা">
+      </div>
+    </section>
+
+    <section id="login-cards" class="sm-access">
+      <div class="sm-wrap">
+        <div class="sm-heading"><span class="sm-kicker">SECURE ACCESS</span><h2>আপনার ভূমিকা অনুযায়ী লগইন করুন</h2><p>প্রশাসন, শিক্ষক ও শিক্ষার্থীর জন্য প্রয়োজনীয় প্রবেশপথ এক জায়গায় সাজানো হয়েছে।</p></div>
+        <div class="sm-access-grid">
+          <article class="sm-access-card"><div class="sm-access-top"><small>Administration</small><i class="fa-solid fa-user-shield"></i></div><div class="sm-access-body"><h3>অ্যাডমিন লগইন</h3><p>শিক্ষক দায়িত্ব, উপস্থিতি, ফি কালেকশন, আয়-ব্যয়, ব্যাংক হিসাব, রুটিন ও রিপোর্টসহ পুরো সফটওয়্যার নিয়ন্ত্রণ করুন।</p><ul class="sm-access-checks"><li><i class="fa-solid fa-circle-check"></i><span>সম্পূর্ণ প্রশাসনিক নিয়ন্ত্রণ</span></li><li><i class="fa-solid fa-circle-check"></i><span>দৈনিক কার্যক্রম পর্যবেক্ষণ</span></li><li><i class="fa-solid fa-circle-check"></i><span>হিসাব ও রিপোর্ট ব্যবস্থাপনা</span></li></ul><a class="sm-access-btn" href="#" data-open-login="admin">অ্যাডমিন হিসেবে প্রবেশ করুন</a></div></article>
+          <article class="sm-access-card"><div class="sm-access-top"><small>Email Login</small><i class="fa-solid fa-user-tie"></i></div><div class="sm-access-body"><h3>শিক্ষক লগইন</h3><p>নিজের ইমেইল ও পাসওয়ার্ড দিয়ে প্রবেশ করে উপস্থিতি, প্রোফাইল, ফি গ্রহণ, নম্বর এন্ট্রি ও দায়িত্বপ্রাপ্ত কাজ সম্পন্ন করুন।</p><ul class="sm-access-checks"><li><i class="fa-solid fa-circle-check"></i><span>ইমেইল দিয়ে লগইন</span></li><li><i class="fa-solid fa-circle-check"></i><span>Attendance ও Fee Collection</span></li><li><i class="fa-solid fa-circle-check"></i><span>Marks ও Result কার্যক্রম</span></li></ul><a class="sm-access-btn" href="#" data-open-login="teacher">শিক্ষক হিসেবে প্রবেশ করুন</a></div></article>
+          <article class="sm-access-card"><div class="sm-access-top"><small>Student Portal</small><i class="fa-solid fa-user"></i></div><div class="sm-access-body"><h3>শিক্ষার্থী লগইন</h3><p>নিজের পোর্টাল থেকে ফলাফল, মার্কশিট, ফি পরিশোধের তথ্য এবং উপস্থিতির বিবরণ নিরাপদভাবে দেখুন।</p><ul class="sm-access-checks"><li><i class="fa-solid fa-circle-check"></i><span>রেজাল্ট ও মার্কশিট</span></li><li><i class="fa-solid fa-circle-check"></i><span>ফি ও বকেয়া তথ্য</span></li><li><i class="fa-solid fa-circle-check"></i><span>ব্যক্তিগত Attendance</span></li></ul><a class="sm-access-btn" href="student-login.html">শিক্ষার্থী হিসেবে প্রবেশ করুন</a></div></article>
+        </div>
+        <div class="sm-security-note">
+          <div class="sm-security-icon"><i class="fa-solid fa-lock"></i></div>
+          <div><h3>নিরাপদ ও দায়িত্বশীল প্রবেশ</h3><p>প্রত্যেক ব্যবহারকারী তার নির্ধারিত অনুমতি অনুযায়ী প্রয়োজনীয় তথ্য ও মডিউল দেখতে পারবেন।</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sm-footer">
+    <div class="sm-wrap sm-footer-grid">
+      <div>
+        <div class="sm-brand"><img src="sc.png" data-school-logo="school" alt="Arju Online School Management System"><div><strong>Arju Online School Management System</strong><small>SMART SCHOOL MANAGEMENT SYSTEM</small></div></div>
+        <p>শিক্ষার্থী, শিক্ষক, অভিভাবক ও প্রশাসনের জন্য একটি সহজ ডিজিটাল ব্যবস্থাপনা প্ল্যাটফর্ম।</p>
+      </div>
+      <div><h3>যোগাযোগ</h3><div class="sm-contact-list"><a data-school-link="phone" href="tel:01792838223"><i class="fa-solid fa-phone"></i><span data-school="phone">01792838223</span></a><a data-school-link="email" href="mailto:ballovpurhighschool@gmail.com"><i class="fa-solid fa-envelope"></i><span data-school="email">ballovpurhighschool@gmail.com</span></a><a href="index.html#contact"><i class="fa-solid fa-location-dot"></i><span data-school="address">পোস্ট: নাগেশ্বরী, উপজেলা: নাগেশ্বরী, জেলা: কুড়িগ্রাম</span></a></div></div>
+      <div><h3>গুরুত্বপূর্ণ লিংক</h3><a href="index.html">মূল ওয়েবসাইট</a><a href="/admin/">ওয়েব ম্যানেজমেন্ট</a><a href="all-notices.html">নোটিশ</a><a href="class-routine.html">ক্লাস রুটিন</a></div>
+    </div>
+    <div class="sm-bottom">© ২০২৬ Arju Online School Management System। সর্বস্বত্ব সংরক্ষিত।</div>
+  </footer>
+  </div>
+
+
+  <div class="sm-login-overlay" id="smLoginModal" aria-hidden="true">
+    <div class="sm-login-modal" role="dialog" aria-modal="true" aria-labelledby="smLoginTitle">
+      <button class="sm-login-close" id="smLoginClose" type="button" aria-label="Close">&times;</button>
+      <h2 id="smLoginTitle">অ্যাডমিন লগইন</h2>
+      <p class="sm-login-hint" id="smTeacherHint" hidden>ইউজার নেম হিসেবে শিক্ষক তার নিজের ইমেইলটি ব্যবহার করবেন।</p>
+      <form id="smLoginForm">
+        <label class="sm-input-wrap"><i id="smIdentityIcon" class="fa-solid fa-user"></i><input id="smLoginIdentity" type="text" autocomplete="username" required placeholder="Admin Username"></label>
+        <label class="sm-input-wrap"><i class="fa-solid fa-lock"></i><input id="smLoginPassword" type="password" autocomplete="current-password" required placeholder="Password"></label>
+        <button class="sm-login-submit" type="submit">Login</button>
+      </form>
+      <div class="sm-forgot">পাসওয়ার্ড ভুলে গেছেন?</div>
+    </div>
+  </div>
+
+  <script src="school-info.js?v=global-name-1"></script>
+  <script>
+  (()=>{
+    const modal=document.getElementById('smLoginModal'), closeBtn=document.getElementById('smLoginClose'), form=document.getElementById('smLoginForm');
+    const title=document.getElementById('smLoginTitle'), identity=document.getElementById('smLoginIdentity'), teacherHint=document.getElementById('smTeacherHint'), icon=document.getElementById('smIdentityIcon');
+    const cfg={admin:{title:'অ্যাডমিন লগইন',placeholder:'Admin Username',icon:'fa-user'},teacher:{title:'শিক্ষক লগইন',placeholder:'Teacher Email',icon:'fa-envelope'}};
+    let lastFocus=null;
+    function openLogin(role){const c=cfg[role]||cfg.admin;lastFocus=document.activeElement;title.textContent=c.title;identity.placeholder=c.placeholder;icon.className='fa-solid '+c.icon;teacherHint.hidden=role!=='teacher';modal.classList.add('show');modal.setAttribute('aria-hidden','false');setTimeout(()=>identity.focus(),30)}
+    function closeLogin(){modal.classList.remove('show');modal.setAttribute('aria-hidden','true');if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+    document.querySelectorAll('[data-open-login]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();openLogin(el.getAttribute('data-open-login'))}));
+    closeBtn.addEventListener('click',closeLogin); modal.addEventListener('click',e=>{if(e.target===modal)closeLogin()}); document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('show'))closeLogin()});
+    form.addEventListener('submit',e=>{e.preventDefault();window.location.href=(title.textContent.includes('শিক্ষক')?'teacher-login.html':'/admin/')});
+    const logout=document.getElementById('topLogout'); if(logout)logout.addEventListener('click',e=>{e.preventDefault();fetch('/.netlify/functions/auth?action=logout',{credentials:'same-origin'}).catch(()=>{}).finally(()=>{window.location.href='index.html'})});
+    function syncWhatsapp(info){let phone=String((info&&info.phone)||'01792838223').replace(/\D/g,'');if(phone.startsWith('0'))phone='880'+phone.slice(1);const el=document.getElementById('contactWhatsApp');if(el&&phone)el.href='https://wa.me/'+phone+'?text='+encodeURIComponent('আসসালামু আলাইকুম, স্কুল সম্পর্কে তথ্য জানতে চাই।')}
+    if(window.getSchoolInfo)syncWhatsapp(window.getSchoolInfo());document.addEventListener('schoolInfoUpdated',e=>syncWhatsapp(e.detail));
+  })();
+  </script>
+</body>
+</html>

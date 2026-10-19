@@ -12,7 +12,7 @@ const classNo=v=>({"6":"6","৬":"6","ষষ্ঠ":"6","৬ষ্ঠ":"6","7":"
 
 export default async (req) => {
   const u=new URL(req.url),kind=u.searchParams.get("kind")||"";
-  const d=await getData();
+  const d=await getData(req);
 
   if(kind==="school") return json({...d.school,schoolLogo:media(d.school.schoolLogo),boardLogo:media(d.school.boardLogo)});
 

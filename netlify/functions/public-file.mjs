@@ -18,7 +18,7 @@ async function serve(ref,download){
 
 export default async (req) => {
   const u=new URL(req.url),kind=u.searchParams.get("kind")||"",id=u.searchParams.get("id")||"",download=u.searchParams.get("download")==="1";
-  const d=await getData();
+  const d=await getData(req);
   let item=null;
   if(kind==="notice")item=(d.notices||[]).find(x=>String(x.id)===String(id));
   else if(kind==="holiday")item=(d.holidays||[]).find(x=>String(x.id)===String(id));

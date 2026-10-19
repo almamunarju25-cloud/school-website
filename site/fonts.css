@@ -1,0 +1,8 @@
+/* Shared web font used by the public pages and web management panel. */
+@font-face{
+  font-family:"Kalpurush";
+  src:url("fonts/Kalpurush.ttf") format("truetype");
+  font-weight:normal;
+  font-style:normal;
+  font-display:swap;
+}

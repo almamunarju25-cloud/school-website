@@ -29,6 +29,27 @@
     return n && n.has_file ? `/.netlify/functions/public-file?kind=notice&id=${encodeURIComponent(n.id)}&download=1` : '#';
   }
 
+  // Keep the marquee moving at a steady, slow pixel speed. The duration grows
+  // with the amount of notice text, so adding notices does not make it faster.
+  const NOTICE_MARQUEE_SPEED = 32;
+  let noticeMarqueeResizeBound = false;
+  function updateNoticeMarqueeSpeed(track){
+    const viewport=track && track.closest('.notice-scroll');
+    if(!track || !viewport) return;
+    const travel=viewport.clientWidth + track.scrollWidth;
+    const duration=Math.max(30, travel / NOTICE_MARQUEE_SPEED);
+    track.style.setProperty('--notice-duration', `${duration}s`);
+  }
+  function bindNoticeMarqueeResize(){
+    if(noticeMarqueeResizeBound) return;
+    noticeMarqueeResizeBound=true;
+    let timer;
+    window.addEventListener('resize',()=>{
+      clearTimeout(timer);
+      timer=setTimeout(()=>document.querySelectorAll('.notice-track').forEach(updateNoticeMarqueeSpeed),120);
+    });
+  }
+
   function renderAll(){
     const rows=getNotices();
     document.querySelectorAll('[data-notice-count]').forEach(x=>x.textContent=rows.length);
@@ -52,6 +73,9 @@
         const href=viewUrl(n);
         return `<a href="${href}" ${!n.has_file?'aria-disabled="true"':''}>${esc(n.title)}</a>`;
       }).join('');
+      updateNoticeMarqueeSpeed(track);
+      bindNoticeMarqueeResize();
+      requestAnimationFrame(()=>updateNoticeMarqueeSpeed(track));
     }
 
     const list=document.querySelector('[data-all-notices]');

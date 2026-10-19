@@ -220,6 +220,10 @@ a,button,.person-card,.achiever-card{cursor:pointer}
 .holiday-track{animation-duration:34s}
 .notice-scroll:hover .notice-track,.holiday-scroll:hover .holiday-track{animation-play-state:paused!important}
 
+/* The script calculates this duration from the text width so the notice keeps
+   the same slow pixel speed when the number of notices changes. */
+.notice-track{animation-duration:var(--notice-duration,60s)}
+
 /* Main navigation: hover/focus reliably reveals submenus. */
 .main-menu{z-index:1000}
 #mainMenu>li{z-index:1001}

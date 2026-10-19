@@ -2,7 +2,7 @@ import { getStore } from "@netlify/blobs";
 import { json, validSession, MEDIA_STORE } from "./_shared.mjs";
 
 export default async (req) => {
-  if (!validSession(req)) return json({error:"unauthorized"},401);
+  if (!validSession(req,"admin")) return json({error:"unauthorized"},401);
   if (req.method!=="POST") return json({error:"method_not_allowed"},405);
   const form=await req.formData();
   const file=form.get("file");

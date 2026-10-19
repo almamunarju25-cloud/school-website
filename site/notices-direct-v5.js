@@ -11,6 +11,27 @@
   function viewUrl(n){ return n && n.view_url ? n.view_url : ''; }
   function downloadUrl(n){ return n && n.download_url ? n.download_url : ''; }
 
+  // Keep the marquee moving at a steady, slow pixel speed. The duration grows
+  // with the amount of notice text, so adding notices does not make it faster.
+  const NOTICE_MARQUEE_SPEED = 32;
+  let noticeMarqueeResizeBound = false;
+  function updateNoticeMarqueeSpeed(track){
+    const viewport=track && track.closest('.notice-scroll');
+    if(!track || !viewport) return;
+    const travel=viewport.clientWidth + track.scrollWidth;
+    const duration=Math.max(30, travel / NOTICE_MARQUEE_SPEED);
+    track.style.setProperty('--notice-duration', `${duration}s`);
+  }
+  function bindNoticeMarqueeResize(){
+    if(noticeMarqueeResizeBound) return;
+    noticeMarqueeResizeBound=true;
+    let timer;
+    window.addEventListener('resize',()=>{
+      clearTimeout(timer);
+      timer=setTimeout(()=>document.querySelectorAll('.notice-track').forEach(updateNoticeMarqueeSpeed),120);
+    });
+  }
+
   function renderAll(){
     const rows=getNotices();
     document.querySelectorAll('[data-notice-count]').forEach(x=>x.textContent=rows.length);
@@ -34,6 +55,9 @@
       track.innerHTML=rows.slice(0,6).map(n=>viewUrl(n)
         ? `<a href="${esc(viewUrl(n))}" target="_blank" rel="noopener">${esc(n.title)}</a>`
         : `<span>${esc(n.title)}</span>`).join('');
+      updateNoticeMarqueeSpeed(track);
+      bindNoticeMarqueeResize();
+      requestAnimationFrame(()=>updateNoticeMarqueeSpeed(track));
     }
 
     const list=document.querySelector('[data-all-notices]');

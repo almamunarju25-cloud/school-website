@@ -64,3 +64,11 @@ FINAL AUDIT:
 - Image values normalized to URL strings on public APIs.
 - Blob file metadata retained for PDF/image serving.
 - School logos, slider, gallery, staff, committee, merit, headteacher image mappings audited.
+
+MULTI-SCHOOL SELLING MODE
+- Set DEFAULT_SCHOOL_SLUG=ballovpur for the first school.
+- Set SUPER_ADMIN_PASSWORD for platform owner access.
+- Every public/admin request can be scoped with ?school=<slug> or x-school-slug header.
+- Tenant data is stored separately under site-data-v1:<school-slug>.
+- Super Admin API: /.netlify/functions/super-admin-api (header: x-super-admin-password).
+- School Admin remains protected by ADMIN_PASSWORD; deploy one site with per-school slug routing or add a custom domain per tenant.
