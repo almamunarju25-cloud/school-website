@@ -14,11 +14,29 @@ export default async (req) => {
   const rows = await getTenants();
   const action = String(body.action || "");
   if (action === "upsertTenant") {
-    const slug = String(body.tenant?.slug || "").toLowerCase().trim().replace(/[^a-z0-9-]/g, "-");
+    const slug = String(body.tenant?.slug || "").toLowerCase().trim().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "");
     if (!slug) return json({ error: "invalid_slug" }, 400);
-    const item = { slug, adminPasswordHash: body.tenant?.adminPassword ? hashPassword(body.tenant.adminPassword) : undefined, nameBn: String(body.tenant?.nameBn || slug), nameEn: String(body.tenant?.nameEn || slug), status: body.tenant?.status || "active", plan: body.tenant?.plan || "basic", updatedAt: new Date().toISOString() };
+    const password = String(body.tenant?.adminPassword || "");
+    if (!rows.some(x => x.slug === slug) && password.length < 8) {
+      return json({ error: "admin_password_min_8_chars" }, 400);
+    }
     const i = rows.findIndex(x => x.slug === slug);
-    if (i >= 0) rows[i] = { ...rows[i], ...item }; if(!item.adminPasswordHash) delete rows[i].adminPasswordHash; else rows.push({ ...item, createdAt: new Date().toISOString() });
+    const existing = i >= 0 ? rows[i] : null;
+    const item = {
+      ...(existing || {}),
+      slug,
+      nameBn: String(body.tenant?.nameBn || existing?.nameBn || slug),
+      nameEn: String(body.tenant?.nameEn || existing?.nameEn || slug),
+      status: body.tenant?.status || existing?.status || "active",
+      plan: body.tenant?.plan || existing?.plan || "basic",
+      updatedAt: new Date().toISOString()
+    };
+    if (password) {
+      if (password.length < 8) return json({ error: "admin_password_min_8_chars" }, 400);
+      item.adminPasswordHash = hashPassword(password);
+    }
+    if (i >= 0) rows[i] = item;
+    else rows.push({ ...item, createdAt: new Date().toISOString() });
   } else if (action === "setStatus") {
     const item = rows.find(x => x.slug === body.slug);
     if (!item) return json({ error: "tenant_not_found" }, 404);

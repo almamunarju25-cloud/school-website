@@ -11,7 +11,9 @@ export const TENANTS_KEY = "platform-tenants-v1";
 export function tenantSlug(req) {
   try {
     const u = new URL(req?.url || "http://localhost/");
-    const raw = req?.headers?.get?.("x-school-slug") || u.searchParams.get("school") || process.env.DEFAULT_SCHOOL_SLUG || "ballovpur";
+    const cookie = req?.headers?.get?.("cookie") || "";
+    const cookieSlug = cookie.match(/(?:^|;\\s*)bhs_school=([^;]+)/)?.[1] || "";
+    const raw = req?.headers?.get?.("x-school-slug") || u.searchParams.get("school") || decodeURIComponent(cookieSlug) || process.env.DEFAULT_SCHOOL_SLUG || "ballovpur";
     return String(raw).toLowerCase().trim().replace(/[^a-z0-9-]/g, "-").replace(/-+/g, "-").replace(/^-|-$/g, "") || "ballovpur";
   } catch { return process.env.DEFAULT_SCHOOL_SLUG || "ballovpur"; }
 }
@@ -84,7 +86,7 @@ export async function setData(data, req) {
 }
 
 function secret() {
-  return process.env.ADMIN_PASSWORD || "";
+  return process.env.SESSION_SECRET || process.env.ADMIN_PASSWORD || process.env.SUPER_ADMIN_PASSWORD || "";
 }
 function hmac(value) {
   return createHmac("sha256", secret()).update(value).digest("hex");

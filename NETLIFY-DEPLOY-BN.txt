@@ -9,7 +9,7 @@ DEPLOY করার সহজ নিয়ম
 পদ্ধতি ১ (সবচেয়ে সহজ):
 1. এই ZIP Extract করুন।
 2. Netlify-তে Login করুন।
-3. Add new project / Deploy manually থেকে Extract করা `ballovpur_integrated` project folder দিন।
+3. Add new project / Deploy manually থেকে Extract করা `school-website-main` project folder দিন (যেখানে `netlify.toml`, `site/` ও `netlify/functions/` আছে)।
    Logged-in অবস্থায় project folder দিলে Netlify build করে Functions deploy করতে পারে।
 4. Deploy শেষ হলে:
    Project configuration -> Environment variables
@@ -67,7 +67,7 @@ FINAL AUDIT:
 
 MULTI-SCHOOL SELLING MODE
 - Set DEFAULT_SCHOOL_SLUG=ballovpur for the first school.
-- Set SUPER_ADMIN_PASSWORD for platform owner access.
+- Set SUPER_ADMIN_PASSWORD for platform owner access.\n- Set SESSION_SECRET to a long random secret for session signing; keep it private and stable between deploys.
 - Every public/admin request can be scoped with ?school=<slug> or x-school-slug header.
 - Tenant data is stored separately under site-data-v1:<school-slug>.
 - Super Admin API: /.netlify/functions/super-admin-api (header: x-super-admin-password).

@@ -3,7 +3,8 @@ import { json, makeSession, validSession, getData, verifyPassword, getTenants, t
 export default async (req) => {
   const url=new URL(req.url);
   if (url.searchParams.get("action")==="me") {
-    return json({authenticated:validSession(req,"admin"), configured:Boolean(process.env.ADMIN_PASSWORD || true)});
+    const slug=tenantSlug(req); const tenants=await getTenants(); const tenant=tenants.find(x=>x.slug===slug);
+    return json({authenticated:validSession(req,"admin"), configured:Boolean(tenant?.adminPasswordHash || process.env.ADMIN_PASSWORD)});
   }
   if (url.searchParams.get("action")==="logout") {
     return json({ok:true},200,{"Set-Cookie":"bhs_admin=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0"});
